@@ -27,3 +27,6 @@ body{
 .back{
   background-color: #fff;
 }
+.account label{
+  font-weight: bold;
+}
