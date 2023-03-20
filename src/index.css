@@ -39,13 +39,13 @@ body{
 border: #023e8a;
 } */
 
-.signup button{
+/* .signup button{
   background-color: #023e8a;
   color: #fff;
-}
+} */
 
 .signup label{
- font-size: 1.2em;
+ font-size: 1em;
 }
 
 .signup h1{
