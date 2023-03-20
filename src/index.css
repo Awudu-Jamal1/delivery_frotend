@@ -43,3 +43,11 @@ border: #023e8a;
   background-color: #023e8a;
   color: #fff;
 }
+
+.signup label{
+ font-size: 1.2em;
+}
+
+.signup h1{
+  font-size: 2em;
+ }
