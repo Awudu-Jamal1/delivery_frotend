@@ -30,3 +30,16 @@ body{
 .account label{
   font-weight: bold;
 }
+.signup{
+  background-color: #f7fff7;
+  border-radius:0.5em ;
+}
+
+/* .signup input{
+border: #023e8a;
+} */
+
+.signup button{
+  background-color: #023e8a;
+  color: #fff;
+}
