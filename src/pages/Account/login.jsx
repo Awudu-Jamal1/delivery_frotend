@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Login (){
     const style = "mt-2 block w-full h-10 order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  "
     const labels ="block text-md font-bold"
@@ -28,11 +30,16 @@ export default function Login (){
                             <option value="Agent">Agent</option>
                         </select>
                     </div>
+                    <div className="flex justify-between">
+                        <div>Remember Me</div>
+                        <div><Link>Forgot Password</Link></div>
+                    </div>
 
                     <div className=" flex py-5 justify-center">
-                        <button className="w-40  text-center h-10 bg-red-500 text-white">SignIn</button>
+                        <button className="w-40  text-center h-10 bg-red-500 text-white">Sign In</button>
                     </div>
                 </form>
+                <div className="text-center">Dont have an account yet? <span className="font-bold">Sign Up</span></div>
 
             </div>
         </div>

@@ -18,12 +18,13 @@ body{
 }
 
 .join button{
-   background-color:#d90429;
+
+   /* background-color: #023e8a; */
    /* #fb5607; */
   color: #fff;
   width: 11em;
   height: 3em;
-  font-weight: light;
+
   padding-left: 1.5em;
   padding-right: 1.5em;
 
@@ -32,6 +33,7 @@ body{
 }
 .back{
   background-color: #f7fff7;
+  color: #023e8a;
 }
 .account label{
   font-weight: bold;

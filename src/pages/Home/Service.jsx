@@ -1,5 +1,5 @@
 const Service=()=>{
-    let grid ="my-4 shadow-md shadow-blue-100 back"
+    let grid ="my-4 shadow-md bg-red-500 shadow-blue-100 back"
     return(
         <div >
             <div className="grid px-6 grid-cols-3 max-sm:grid-cols-1 text-center gap-6 join">
@@ -18,7 +18,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                         <button className="my-5">Join As User</button>
+                         <button className="my-5  bg-red-500">Join As User</button>
                 </div>
                 <div className={grid}>
                     <div className="flex justify-center items-center  py-3">
@@ -27,7 +27,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                         <button className="my-5">Join As Merchant</button>
+                         <button className="my-5  bg-red-500">Join As Merchant</button>
                 </div>
 
                 <div className={grid}>
@@ -37,7 +37,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                    <button className="my-5">Join As Rider</button>
+                    <button className="my-5  bg-red-500">Join As Rider</button>
                 </div>
             </div>
         </div>
