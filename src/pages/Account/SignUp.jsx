@@ -5,13 +5,12 @@ import User from './User'
 export default function SignUp (){
     return(
        <>
-       <div className="relative isolate px-6 pt-14 lg:px-8 ">
         <div className='flex min-h-full items-center justify-center py-10 '>
         {/* <User/> */}
         <Login/>
         </div>
 
-       </div>
+
 
        </>
     )

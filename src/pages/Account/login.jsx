@@ -4,6 +4,8 @@ export default function Login (){
     const drop ="mt-2  w-36 px-2 h-10 order-0 px-5 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-md sm:leading-6  "
     return(
         <>
+
+        <div className='flex min-h-full items-center justify-center py-10 '>
         <div className="signup  w-max py-5">
             <div className="text-left">
                 <h1 className="font-bold px-20">Login to your Quickly Account </h1>
@@ -34,6 +36,9 @@ export default function Login (){
 
             </div>
         </div>
+        </div>
+
+
         </>
     )
 }
