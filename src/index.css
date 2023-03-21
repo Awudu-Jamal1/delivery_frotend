@@ -5,7 +5,11 @@
 
 
 
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body{
   background-color: #edf6f9;
@@ -58,4 +62,10 @@ border: #023e8a;
 
 .signup h1{
   font-size: 2em;
+ }
+ h1{
+  font-size: 2em;
+ }
+ .intro{
+  width: 40em;
  }
