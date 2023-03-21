@@ -1,17 +1,32 @@
+import {
+  NavLink
+} from "react-router-dom";
+
 export default function Intro(){
     let style ="bg-[#f7fff7] py-5 px-5"
+    let isstyle ="bg-my-blue py-5 px-5 text-white"
+    let Nsvg = "fill-my-blue stroke-my-blue h-14"
+    let Asvg = "fill-my-blue stroke-white h-14"
+    let areq ="fill-white stroke-white h-14"
     let label ='my-4'
     return(
         <>
+
         <div className="py-5">
             <div className="text-center py-16">
               <h1>Welcome Awudu Jamal</h1>
+
             </div>
             <div className="grid grid-cols-3 text-center">
-              <div className={style}>
-                <div className="flex justify-center">
+
+
+              <NavLink to='/cal'   className={({isActive})=> isActive?isstyle:style}
+             children={({isActive})=>{
+
+              return (<>
+                 <div className="flex justify-center">
                 <svg
-                  className="fill-my-blue stroke-my-blue h-14"
+                  className={isActive?areq:Nsvg}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
                 >
@@ -23,12 +38,18 @@ export default function Intro(){
                 </svg>
                 </div>
 
-    <div className={label}>CALCUTE ORDER</div>
-              </div>
-              <div className={style}>
-                <div className="flex justify-center">
+    <div className={label}>CALCUTE ORDER</div></>)}}
+              />
+
+
+
+              <NavLink to='.' end className={({isActive})=> isActive?isstyle:style}
+             children={({isActive})=>{
+
+              return (<>
+                 <div className="flex justify-center">
                   <svg
-                    className="fill-my-blue stroke-my-blue h-14"
+                    className={isActive?Asvg:Nsvg}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 100 100"
                   >
@@ -108,13 +129,24 @@ export default function Intro(){
                     />
                   </svg>
                 </div>
-                <div className={label}>TRACK</div>
-              </div>
+                <div className={label}>TRACK</div></>)}}
+              />
 
-              <div  className={style}>
-              <div className="flex justify-center">
+
+
+
+
+
+
+
+
+<NavLink to='request'   className={({isActive})=> isActive?isstyle:style}
+             children={({isActive})=>{
+
+              return (<>
+                 <div className="flex justify-center">
                 <svg
-                className="fill-my-blue stroke-my-blue h-14"
+                 className={isActive?areq:Nsvg}
                   xmlns="http://www.w3.org/2000/svg"
                   data-name="Layer 1"
                   viewBox="0 0 64 64"
@@ -124,8 +156,8 @@ export default function Intro(){
                   <path stroke-width="0" d="M52,34H49V31a1,1,0,0,0-2,0v3H44a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V36h3a1,1,0,0,0,0-2Z" />
                 </svg>
               </div>
-              <div className={label}>MAKE REQUEST</div>
-              </div>
+              <div className={label}>MAKE REQUEST</div></>)}}
+              />
 
             </div>
           </div></>

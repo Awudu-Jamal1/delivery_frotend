@@ -2,7 +2,7 @@ export default function Request(){
     return(
         <>
         <div className="flex justify-center ">
-            <div className=" w-[40em] py-10 px-12 bg-my-blue text-white">
+            <div className=" w-[40em] py-10 px-12 bg-[#f7fff7] text-white">
                 <div className="text-center">
                     <h1>Start Request</h1>
                 </div>

@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import accounting from "../../assets/accounting.svg";
 import Intro from "./intro";
 import Request from "./Request";
@@ -14,8 +15,8 @@ export default function Userpage() {
             <div className="flex justify-center ">
             <Intro/>
             </div>
-
-          <Request/>
+<Outlet/>
+          {/* <Request/> */}
     </div>
         </div>
         <div className="flex justify-center my-12">

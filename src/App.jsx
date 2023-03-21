@@ -13,6 +13,8 @@ import Layout from './components/Layout'
 import ErrorPage from './components/Errorpage'
 import Login from './pages/Account/login'
 import Userpage from './pages/customer/Userpage'
+import Tracking from './pages/customer/tracking'
+import Request from './pages/customer/Request'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,16 @@ const router = createBrowserRouter([
       errorElement:<ErrorPage/>},
       { path: "about",
       element: <Userpage/>,
-      errorElement:<ErrorPage/>}
+      errorElement:<ErrorPage/>,
+      children:[
+        { index:true,
+        element: <Tracking />,
+        errorElement:<ErrorPage/>},
+        { path: "request",
+        element: <Request />,
+        errorElement:<ErrorPage/>},
+      ]
+    }
 
     ]
   },
