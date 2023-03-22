@@ -35,6 +35,9 @@ body{
 
 
 }
+.detail{
+  font-size: 1.5em;
+}
 .back{
   background-color: #f7fff7;
   color: #023e8a;

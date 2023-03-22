@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./stepper.css";
 import { TiTick } from "react-icons/ti";
 const Stepper = () => {
-  const steps = ["Customer Info", "Shipping Info", "Payment", "Step 4"];
+  const steps = ["Pickup Ready", "Courier Assigned", "Deliverying", "Delivered"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between py-3">
         {steps?.map((step, i) => (
           <div
             key={i}
@@ -18,9 +18,12 @@ const Stepper = () => {
             <div className="step">
               {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
             </div>
-            <p className="text-gray-500">{step}</p>
+            <p className="text-[#000] ">{step}</p>
           </div>
         ))}
+      </div>
+      <div className="py-5 text-my-blue detail text-center">
+Searching For Courier
       </div>
       {!complete && (
         <button
