@@ -111,11 +111,16 @@ export default function Request() {
                   className="h-12 px-2 w-full placeholder-[#000] font-bold"
                 />
               </div>
+              {next?<div onClick={handleChange} className="text-center pt-5 ">
+                <button className="bg-green-400 py-2 text-white px-4">
+                  Process Request
+                </button>
+              </div>:
               <div onClick={handleChange} className="text-center pt-5 ">
                 <button className="bg-green-400 py-2 text-white px-4">
                   Process Request
                 </button>
-              </div>
+              </div>}
             </div>
           )}
         </div>
