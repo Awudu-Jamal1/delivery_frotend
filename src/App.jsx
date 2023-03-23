@@ -15,6 +15,7 @@ import Login from './pages/Account/login'
 import Userpage from './pages/customer/Userpage'
 import Tracking from './pages/customer/tracking'
 import Request from './pages/customer/Request'
+import Agent from './pages/Agent/Agentpage'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,9 @@ const router = createBrowserRouter([
       errorElement:<ErrorPage/>},
       { path: "signin",
       element: <Login/>,
+      errorElement:<ErrorPage/>},
+      { path: "pricing",
+      element: <Agent/>,
       errorElement:<ErrorPage/>},
       { path: "about",
       element: <Userpage/>,

@@ -6,7 +6,7 @@ import { SlWallet  } from "react-icons/sl";
 
 const navigation = [
   { name: 'About', href: 'about' },
-  { name: 'Pricing', href: '#' },
+  { name: 'Pricing', href: 'pricing' },
   { name: 'Tracking', href: '#' },
   { name: 'Contact', href: '#' },
 ]
