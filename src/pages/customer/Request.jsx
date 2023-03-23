@@ -25,8 +25,8 @@ console.log(requests)
         }else{
         setNext(!next)}
     }
-    let details ="bg-my-blue text-white py-5 px-4 grid grid-cols-2"
-    let h2 ='py-4'
+    let details ="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2"
+    let h2 ='py-4 font-bold'
     return(
         <>
         <div className="flex justify-center ">
