@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {FaGreaterThan} from "react-icons/fa"
+import Success from "../../components/modals/success";
 
 export default function Request() {
   const [next, setNext] = useState(false);
@@ -8,7 +10,7 @@ export default function Request() {
     locations: "",
     weight: "",
   });
-  let errors = false;
+
   const handleValue = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -30,10 +32,12 @@ export default function Request() {
   let h2 = "py-4 font-bold";
   return (
     <>
+    <Success/>
       <div className="flex justify-center ">
+
         <div className=" w-[40em] py-10 px-12 bg-[#f7fff7]">
           <div className="text-center">
-            <h1>{next ? "Summary" : "Start Request"}</h1>
+            <h1>{next ? "ORDER SUMMARY" : "Start Request"}</h1>
           </div>
           {next && (
             <div className="w-full">
@@ -66,6 +70,16 @@ export default function Request() {
                   </div>
                 </div>
               </div>
+              <div className="pt-5 grid grid-cols-2">
+                <div className="text-center">
+                  Total price <p className="font-bold"> 4.18</p>
+                </div>
+                <div>
+                  <button className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
+                    Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           {!next && (
@@ -77,7 +91,6 @@ export default function Request() {
                   FILL IN ALL INPUT{" "}
                 </div>
               )}
-
               <div className="my-5">
                 <input
                   onChange={handleValue}
@@ -111,16 +124,12 @@ export default function Request() {
                   className="h-12 px-2 w-full placeholder-[#000] font-bold"
                 />
               </div>
-              {next?<div onClick={handleChange} className="text-center pt-5 ">
-                <button className="bg-green-400 py-2 text-white px-4">
-                  Process Request
-                </button>
-              </div>:
               <div onClick={handleChange} className="text-center pt-5 ">
                 <button className="bg-green-400 py-2 text-white px-4">
                   Process Request
                 </button>
-              </div>}
+              </div>
+              :
             </div>
           )}
         </div>
