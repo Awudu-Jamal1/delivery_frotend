@@ -1,3 +1,4 @@
+import Filter from "./statscomponents/filter";
 import Summary from "./statscomponents/sumamry";
 
 function Stats() {
@@ -9,6 +10,14 @@ function Stats() {
         <div>
 <Summary/>
         </div>
+        <div className="flex py-4 justify-between ">
+        <div className=""><Filter/></div>
+        <div><input type="text" placeholder="Search" className="h-10 placeholder:text-black px-3" /></div>
+        </div>
+        <div>
+
+        </div>
+
         </div>
         </div></> );
 }
