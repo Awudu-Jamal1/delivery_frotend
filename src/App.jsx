@@ -16,6 +16,8 @@ import Userpage from './pages/customer/Userpage'
 import Tracking from './pages/customer/tracking'
 import Request from './pages/customer/Request'
 import Agent from './pages/Agent/Agentpage'
+import Requests from './pages/Agent/Requests'
+import Stats from './pages/Agent/Stats'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,15 @@ const router = createBrowserRouter([
       errorElement:<ErrorPage/>},
       { path: "pricing",
       element: <Agent/>,
-      errorElement:<ErrorPage/>},
+      errorElement:<ErrorPage/>,
+      children:[
+        { index:true,
+        element: <Requests />,
+        errorElement:<ErrorPage/>},
+        { path:'stats',
+          element: <Stats/>,
+          errorElement:<ErrorPage/>}
+       ]},
       { path: "about",
       element: <Userpage/>,
       errorElement:<ErrorPage/>,
