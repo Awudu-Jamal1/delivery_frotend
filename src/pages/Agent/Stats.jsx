@@ -3,8 +3,8 @@ import Summary from "./statscomponents/sumamry";
 function Stats() {
     return ( <>
 
-    <div>
-        <div>
+    <div className="flex justify-center ">
+        <div className="border w-[40em]">
         <h1>HISTORY</h1>
         <div>
 <Summary/>
