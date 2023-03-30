@@ -31,6 +31,10 @@ const router = createBrowserRouter([
       { path: "signin",
       element: <Login/>,
       errorElement:<ErrorPage/>},
+      // SiguP to various account
+      { path: "signup",
+      element: <SignUp/>,
+      errorElement:<ErrorPage/>},
       { path: "pricing",
       element: <Agent/>,
       errorElement:<ErrorPage/>,
