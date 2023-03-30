@@ -16,7 +16,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                         <NavLink to="signup">     <button className="my-5  bg-red-500">Join As User</button>
+                         <NavLink to="/signup/user">     <button className="my-5  bg-red-500">Join As User</button>
                     </NavLink>
 
                 </div>
@@ -28,7 +28,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                         <NavLink>   <button className="my-5  bg-red-500">Join As Merchant</button>
+                         <NavLink to="/signup/merchant">   <button className="my-5  bg-red-500">Join As Merchant</button>
                     </NavLink>
 
                 </div>
@@ -42,7 +42,7 @@ const Service=()=>{
                         facere quasi eius. Sunt cum, delectus, voluptas necessitatibus earum
                          placeat nemo corporis, animi dolorem alias vitae pariatur
                          mollitia laboriosam provident reiciendis.</p>
-                         <NavLink>
+                         <NavLink to="/signup/agent">
                 <button className="my-5  bg-red-500">Join As Rider</button>
                 </NavLink>
 

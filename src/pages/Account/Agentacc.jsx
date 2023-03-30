@@ -6,7 +6,7 @@ export default function AgentAcc (){
         <>
         <div className="border w-3/5 signup py-2  px-8">
             <div className="text-center">
-                <h1 className="text-3xl py-3 font-bold">Create A Customer Account</h1>
+                <h1 className="text-3xl py-3 font-bold">Create A Agent Account</h1>
                 <p className="px-16 py-5">Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo! Consequuntur, expedita?</p>
             </div>
             <div>

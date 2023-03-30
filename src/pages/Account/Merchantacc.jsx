@@ -6,7 +6,7 @@ export default function MerchantAcc (){
         <>
         <div className="border w-3/5 signup py-2  px-8">
             <div className="text-center">
-                <h1 className="text-3xl py-3 font-bold">Create A Customer Account</h1>
+                <h1 className="text-3xl py-3 font-bold">Create A Merchant Account</h1>
                 <p className="px-16 py-5">Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo! Consequuntur, expedita?</p>
             </div>
             <div>
@@ -23,6 +23,13 @@ export default function MerchantAcc (){
                     </div>
                     <div className="grid grid-cols-1  py-2">
                         <div className=" ">
+                            <label htmlFor="" className={labels}>Business Name</label>
+                            <input type="text" className={style} placeholder="Enter Business Name"/>
+                        </div>
+
+                    </div>
+                    <div className="grid grid-cols-1  py-2">
+                        <div className=" ">
                             <label htmlFor="" className={labels}>Email Address</label>
                             <input type="email" className={style} placeholder="Enter your Email Address"/>
                         </div>
@@ -30,12 +37,12 @@ export default function MerchantAcc (){
                     </div>
                     <div className="grid grid-cols-2 gap-10 py-2">
                         <div className=" ">
-                            <label htmlFor="" className={labels}>Phone Number</label>
+                            <label  className={labels}>Phone Number</label>
                             <input type="text" className={style}  placeholder="Enter your Phone"/>
                         </div>
                         <div>
-                            <label htmlFor=""className={labels}>Address</label>
-                            <input type="text" className={style}  placeholder="Enter your Address"/>
+                            <label className={labels}>Business Address</label>
+                            <input type="text" className={style}  placeholder="Enter Business Address"/>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-10 py-2">
