@@ -18,6 +18,9 @@ import Request from './pages/customer/Request'
 import Agent from './pages/Agent/Agentpage'
 import Requests from './pages/Agent/Requests'
 import Stats from './pages/Agent/Stats'
+import User from './pages/Account/User'
+import AgentAcc from './pages/Account/Agentacc'
+import MerchantAcc from './pages/Account/Merchantacc'
 
 const router = createBrowserRouter([
   {
@@ -34,7 +37,21 @@ const router = createBrowserRouter([
       // SiguP to various account
       { path: "signup",
       element: <SignUp/>,
-      errorElement:<ErrorPage/>},
+      errorElement:<ErrorPage/>,
+      children:[
+        { path:'user',
+        element: <User />,
+        errorElement:<ErrorPage/>},
+        { path:'merchant',
+          element: <MerchantAcc/>,
+          errorElement:<ErrorPage/>},
+          { path:'agent',
+            element: <AgentAcc/>,
+            errorElement:<ErrorPage/>}
+       ]
+    },
+
+
       { path: "pricing",
       element: <Agent/>,
       errorElement:<ErrorPage/>,
