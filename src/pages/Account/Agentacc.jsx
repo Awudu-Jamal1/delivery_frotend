@@ -28,10 +28,14 @@ export default function AgentAcc (){
                         </div>
 
                     </div>
-                    <div className="grid grid-cols-2 gap-10 py-2">
+                    <div className="grid grid-cols-3 gap-10 py-2">
                         <div className=" ">
                             <label htmlFor="" className={labels}>Phone Number</label>
                             <input type="text" className={style}  placeholder="Enter your Phone"/>
+                        </div>
+                        <div>
+                            <label htmlFor=""className={labels}>Vehicle Number</label>
+                            <input type="text" className={style}  placeholder="Enter Vehicle"/>
                         </div>
                         <div>
                             <label htmlFor=""className={labels}>Address</label>

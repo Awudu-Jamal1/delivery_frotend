@@ -11,7 +11,7 @@ export default function MerchantAcc (){
             </div>
             <div>
                 <form action="" method="post">
-                    <div className="grid grid-cols-2 gap-10 py-2">
+                    <div className="grid grid-cols-3 gap-10 py-2">
                         <div className=" ">
                             <label htmlFor="" className={labels}>First Name</label>
                             <input type="text" className={style} placeholder="Enter your First Name" />
@@ -20,14 +20,12 @@ export default function MerchantAcc (){
                             <label htmlFor=""className={labels}>Last Name</label>
                             <input type="text" className={style} placeholder="Enter your Last Name"/>
                         </div>
-                    </div>
-                    <div className="grid grid-cols-1  py-2">
                         <div className=" ">
                             <label htmlFor="" className={labels}>Business Name</label>
                             <input type="text" className={style} placeholder="Enter Business Name"/>
                         </div>
-
                     </div>
+
                     <div className="grid grid-cols-1  py-2">
                         <div className=" ">
                             <label htmlFor="" className={labels}>Email Address</label>
