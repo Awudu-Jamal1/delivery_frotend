@@ -178,7 +178,30 @@ export default function AgentAcc (){
                 )}</div>
                     </div>
                 </form>
-                <div className="flex justify-center py-6 "><button className="w-30 py-3 px-3">Create Account</button></div>
+                <div className="flex justify-center py-6 "><button
+              className="w-30 py-3 px-3"
+              onClick={handleSubmit(async(data) => {
+                console.log(data);
+                let datas ={"User":{"role":"Agent",
+  "firstName":data.firstnames,
+  "lastName":data.lastname,
+  "email":data.email,
+  "password":data.password,
+  "phone":data.phone,
+  "address":data.address},
+  "roles":{"vehicle_number":data.vehicle}
+}
+
+                try {
+                  let response = await axios.post('http://localhost:8081/user',datas)
+                } catch (error) {
+                  console.log("User create error")
+                }
+
+              })}
+            >
+              Create Account
+            </button></div>
             </div>
         </div>
         </>

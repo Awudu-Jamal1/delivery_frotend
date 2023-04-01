@@ -15,7 +15,7 @@ export default function MerchantAcc (){
     return(
 
         <>
-        <div className="border w-3/5 signup py-2  px-8">
+        <div className="border w-[45em] signup py-2  px-8">
             <div className="text-center">
                 <h1 className="text-3xl py-3 font-bold">Create A Merchant Account</h1>
                 <p className="px-16 py-5">Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo! Consequuntur, expedita?</p>
@@ -90,7 +90,7 @@ export default function MerchantAcc (){
                 )}</div>
 
                     </div>
-                    <div className="grid grid-cols-2 gap-10 py-2">
+                    <div className="grid grid-cols-3 gap-10 py-2">
                         <div className=" ">
                             <label  className={labels}>Phone Number</label>
                             <input
@@ -109,10 +109,10 @@ export default function MerchantAcc (){
                   </p>
                 )}</div>
                         <div>
-                            <label className={labels}>Business Address</label>
+                            <label className={labels}>Address</label>
                             <input
                   type="text"
-                  {...register("address", { required: "Enter Business Address" })}
+                  {...register("address", { required: "Enter  Address" })}
                   className={errors.address ? estyle : style}
                   placeholder="Enter Business Address"
                 />
@@ -120,6 +120,20 @@ export default function MerchantAcc (){
                   <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
                     {" "}
                     {errors.address?.message}
+                  </p>
+                )}</div>
+                <div>
+                            <label className={labels}>Business Address</label>
+                            <input
+                  type="text"
+                  {...register("ba", { required: "Enter Business Address" })}
+                  className={errors.ba ? estyle : style}
+                  placeholder="Enter Business Address"
+                />
+                {errors.ba && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.ba?.message}
                   </p>
                 )}</div>
                     </div>
@@ -182,14 +196,15 @@ export default function MerchantAcc (){
               className="w-30 py-3 px-3"
               onClick={handleSubmit(async(data) => {
                 console.log(data);
-                let datas ={"User":{"role":"Customer",
+                let datas ={"User":{"role":"Merchant",
   "firstName":data.firstnames,
   "lastName":data.lastname,
   "email":data.email,
   "password":data.password,
   "phone":data.phone,
   "address":data.address},
-  "roles":{}
+  "roles":{business_name: data.business,
+    business_address: data.ba}
 }
 
                 try {
