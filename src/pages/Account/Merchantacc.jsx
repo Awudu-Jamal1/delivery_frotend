@@ -1,7 +1,15 @@
 import { useForm } from "react-hook-form";
+import{useNavigate} from  "react-router-dom"
 import axios, { Axios } from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCircleNotched } from '@fortawesome/free-solid-svg-icons'
 
 export default function MerchantAcc (){
+    let navigate = useNavigate()
+    let spinner =false
+    let  spinnin= <div>
+    {/* <FontAwesomeIcon icon={faCircleNotched} spin /> */}
+    </div>
     const style = "mt-2 block w-full order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  "
     const estyle =
     "mt-2 block w-full order-0 px-3 bg-rose-100 py-1.5 text-gray-900 ring-1 ring-inset ring-red-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
@@ -192,7 +200,7 @@ export default function MerchantAcc (){
                 )}</div>
                     </div>
                 </form>
-                <div className="flex justify-center py-6 "><button
+                <div className="flex justify-center py-6 ">{!spinner?(<button
               className="w-30 py-3 px-3"
               onClick={handleSubmit(async(data) => {
                 console.log(data);
@@ -209,6 +217,8 @@ export default function MerchantAcc (){
 
                 try {
                   let response = await axios.post('http://localhost:8081/user',datas)
+                  console.log(response)
+                  navigate('/signin')
                 } catch (error) {
                   console.log("User create error")
                 }
@@ -216,7 +226,7 @@ export default function MerchantAcc (){
               })}
             >
               Create Account
-            </button></div>
+            </button>):spinnin}</div>
             </div>
         </div>
         </>
