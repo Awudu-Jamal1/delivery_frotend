@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios, { Axios } from 'axios'
+
 
 export default function User() {
-  const {
+ const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm();
-  console.log(errors.compare);
+//   console.log(errors.compare);
   const style =
     "mt-2 block w-full order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
   const labels = "block text-md font-bold";
@@ -34,15 +36,14 @@ export default function User() {
                   First Name
                 </label>
                 <input
-                  {...register("firstname", { required: "Enter first name" })}
+                  {...register("firstnames", { required: "Enter first name" })}
                   name
                   type="text"
-                  className={errors.firstname ? estyle : style}
+                  className={errors.firstnames ? estyle : style}
                   placeholder="Enter your First Name"
                 />
-                {errors.firstname && (
+                {errors.firstnames && (
                   <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
-                    {" "}
                     {errors.firstname?.message}
                   </p>
                 )}
@@ -117,9 +118,9 @@ export default function User() {
                 </label>
                 <input
                   type="text"
-                  {...register("address", { required: "Enter Address" })}
+                  {...register("address", { required: "Enter Business Address" })}
                   className={errors.address ? estyle : style}
-                  placeholder="Enter your Address"
+                  placeholder="Enter Business Address"
                 />
                 {errors.address && (
                   <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
@@ -193,8 +194,24 @@ export default function User() {
           <div className="flex justify-center py-6 ">
             <button
               className="w-30 py-3 px-3"
-              onClick={handleSubmit((data) => {
+              onClick={handleSubmit(async(data) => {
                 console.log(data);
+                let datas ={"User":{"role":"Customer",
+  "firstName":data.firstnames,
+  "lastName":data.lastname,
+  "email":data.email,
+  "password":data.password,
+  "phone":data.phone,
+  "address":data.address},
+  "roles":{}
+}
+
+                try {
+                  let response = await axios.post('http://localhost:8081/user',datas)
+                } catch (error) {
+                  console.log("User create error")
+                }
+
               })}
             >
               Create Account
