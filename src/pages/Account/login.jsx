@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form";
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
 export default function Login (){
+    const estyle =
+    "mt-2 block w-full order-0 px-3 bg-rose-100 py-1.5 text-gray-900 ring-1 ring-inset ring-red-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
+
     const style = "mt-2 block w-full h-10 order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  "
     const labels ="block text-md font-bold"
     const drop ="mt-2  w-36 px-2 h-10 order-0 px-5 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-md sm:leading-6  "
@@ -16,11 +26,54 @@ export default function Login (){
                 <form action="" method="post" className="py-5 px-16">
                     <div className="py-2">
                         <label htmlFor="" className={labels}>Email Address</label>
-                        <input type="email" className={style} placeholder="Enter Email Address" />
+                        <input
+                  type="email"
+                  {...register("email", {
+                    required: "Enter Email",
+                    pattern: {
+                      value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                      message: "Wrong email format",
+                    },
+                  })}
+                  className={errors.email ? estyle : style}
+                  placeholder="Enter your Email Address"
+                />
+                {errors.email && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.email?.message}
+                  </p>
+                )}
                     </div>
                     <div className="py-2">
                         <label htmlFor="" className={labels}>Password</label>
-                        <input type="password" className={style} placeholder="Enter Password" />
+                        <input
+                  type="password"
+                  {...register("password", {
+                    required: "Enter Password",
+                    minLength: {
+                      value: 8,
+                      message: "Password is short.minimum length is 8",
+                    },
+                    pattern: {
+                      value:
+                        "/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/",
+                      message:
+                        "at least one numeric digit and a special character",
+                    },
+                  })}
+                  autoComplete="false"
+                  autoSave="false"
+                  required
+                  className={errors.password ? estyle : style}
+                  placeholder="Enter your Password"
+                />
+                {errors.password && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.password?.message}
+                  </p>
+                )}
                     </div>
                     <div className="py-2">
                         <label htmlFor="" className={labels}>Select Status:  </label>
