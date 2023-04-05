@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { login,setTokens } from "../../features/userAcc/users";
+import { useDispatch,useSelector } from "react-redux";
+import { login,selectUser,setTokens } from "../../features/userAcc/users";
+import UserAuthenticate from "../../services/UserAuthenticate";
+
 
 
 export default function Login() {
+    let dispatch =useDispatch()
+    let using = useSelector(selectUser)
+    console.log(using)
   const {
     register,
     handleSubmit,
@@ -24,6 +29,7 @@ export default function Login() {
         <div className="signup  w-max py-5">
           <div className="text-left">
             <h1 className="font-bold px-20">Login to your Quickly Account </h1>
+
           </div>
           <div>
             <form action="" method="post" className="py-5 px-16">
@@ -59,7 +65,7 @@ export default function Login() {
                   {...register("password", {
                     required: "Enter Password",
                     minLength: {
-                      value: 8,
+                      value: 6,
                       message: "Password is short.minimum length is 8",
                     },
                     pattern: {
@@ -87,7 +93,7 @@ export default function Login() {
                   Select Status:{" "}
                 </label>
                 <select {...register("Status")} id="status">
-                  <option value="User">User</option>
+                  <option value="Customer">User</option>
                   <option value="Merchant">Merchant</option>
                   <option value="Agent">Agent</option>
                 </select>
@@ -103,19 +109,19 @@ export default function Login() {
                 <button
                   className="w-40  text-center h-10 bg-red-500 text-white"
                   onClick={handleSubmit(async (data) => {
-                    console.log(data);
+
                     let datas = {
-                      roles: data.Status,
+                      roles: "Customer",
                       email: data.email,
                       password: data.password,
                     };
 
                     try {
-                      let response = await axios.post(
-                        "http://localhost:8081/user/login",
-                        datas
-                      );
-                      console.log(resposne);
+                      let response = (await UserAuthenticate.logins(datas)).data
+
+                      console.log(response);
+                      dispatch(login(response.user))
+                      dispatch(setTokens(response.token))
                     //   login.
                     } catch (error) {
                       console.log("User Login error");

@@ -1,8 +1,13 @@
-// import Api from './Api'
+import Api from './Api'
 
-// export default {
-//     registerU( user){
-//         return Api().post('user',user)
+export default {
+    register( items){
+        return Api().post('user/signup',{user:items})
 
-//     }
-// }
+    },
+    logins( user){
+        return Api().post('user/login',user)
+
+    }
+
+}

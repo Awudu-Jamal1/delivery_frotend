@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios, { Axios } from 'axios'
+import UserAuthenticate from "../../services/UserAuthenticate";
 
 
 export default function User() {
@@ -36,15 +37,15 @@ export default function User() {
                   First Name
                 </label>
                 <input
-                  {...register("firstnames", { required: "Enter first name" })}
-                  name
                   type="text"
-                  className={errors.firstnames ? estyle : style}
-                  placeholder="Enter your First Name"
+                  {...register("first", { required: "Enter First name" })}
+                  className={errors.first ? estyle : style}
+                  placeholder="Enter your Last Name"
                 />
-                {errors.firstnames && (
+                {errors.first&& (
                   <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
-                    {errors.firstname?.message}
+                    {" "}
+                    {errors.first?.message}
                   </p>
                 )}
               </div>
@@ -197,7 +198,7 @@ export default function User() {
               onClick={handleSubmit(async(data) => {
                 console.log(data);
                 let datas ={"User":{"role":"Customer",
-  "firstName":data.firstnames,
+  "firstName":data.first,
   "lastName":data.lastname,
   "email":data.email,
   "password":data.password,
@@ -207,7 +208,9 @@ export default function User() {
 }
 
                 try {
-                  let response = await axios.post('http://localhost:8081/user',datas)
+                  console.log(datas)
+                  let response = (await UserAuthenticate.register(datas)).data
+                  console.log(response.user)
                 } catch (error) {
                   console.log("User create error")
                 }
