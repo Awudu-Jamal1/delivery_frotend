@@ -6,8 +6,8 @@ import SignUp from './pages/Account/SignUp'
 import Homepage from './pages/Home/homepage'
 import {
   createBrowserRouter,
-  Route,
   RouterProvider,
+  BrowserRouter as Router,Routes,Route
 } from "react-router-dom";
 import Layout from './components/Layout'
 import ErrorPage from './components/Errorpage'
@@ -21,6 +21,9 @@ import Stats from './pages/Agent/Stats'
 import User from './pages/Account/User'
 import AgentAcc from './pages/Account/Agentacc'
 import MerchantAcc from './pages/Account/Merchantacc'
+import LoggedUser from './components/loggedUser'
+import AuthProvider from './util/auth'
+
 
 const router = createBrowserRouter([
   {
@@ -79,9 +82,34 @@ const router = createBrowserRouter([
     ]
   },
  ]);
+ const InnerRoutes=<Route element={AuthProvider} errorElement={<ErrorPage/>}><Route  path='/' element={<Userpage />} >
+
+  <Route element={<Tracking />} index errorElement={<ErrorPage/>}></Route>
+  <Route element={<Request />} path='request' errorElement={<ErrorPage/>}></Route></Route>
+
+ </Route>
 function App() {
   return (
-    <RouterProvider router={router} />
+    <div>
+      <Router>
+        <Routes>
+
+          <Route element={<Layout />} errorElement={<ErrorPage/>} >{!AuthProvider?
+            <Route element={<Homepage/>} path='/'/>:
+
+              InnerRoutes
+
+
+            }
+            <Route  path= "signin" element= {<Login/>} errorElement={<ErrorPage/>}/>
+
+
+          </Route>
+        </Routes>
+      </Router>
+    </div>
+
+    // <RouterProvider router={router} />
   )
 }
 

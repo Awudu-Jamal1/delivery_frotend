@@ -9,7 +9,7 @@ import UserAuthenticate from "../../services/UserAuthenticate";
 export default function Login() {
     let dispatch =useDispatch()
     let using = useSelector(selectUser)
-    console.log(using)
+    console.log(using.user)
   const {
     register,
     handleSubmit,
