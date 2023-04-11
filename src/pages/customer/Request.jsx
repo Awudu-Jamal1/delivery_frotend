@@ -1,15 +1,26 @@
 import { useState } from "react";
 import {FaGreaterThan} from "react-icons/fa"
 import Success from "../../components/modals/success";
+import { useForm } from "react-hook-form";
 
 export default function Request() {
   const [next, setNext] = useState(false);
   const [required, setRequired] = useState(false);
-  const [requests, setRequests] = useState({
-    destination: "",
-    locations: "",
-    weight: "",
-  });
+  const [requests, setRequests] = useState({ });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const estyle =
+  "mt-2 block h-12 w-full order-0 px-3 bg-rose-100 py-1.5 text-gray-900 ring-1 ring-inset ring-red-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
+
+const style =
+  "mt-2 block h-12 w-full h-10 order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
+
+
+
 
   const handleValue = (e) => {
     let name = e.target.name;
@@ -17,16 +28,12 @@ export default function Request() {
     setRequests((values) => ({ ...values, [name]: value }));
   };
   console.log(requests);
-  const handleChange = () => {
-    const { destination, locations, weight } = requests;
 
-    if (destination === "" || locations === "" || weight === "") {
-      console.log("error");
-      setRequired(true);
-    } else {
-      setNext(!next);
-    }
-  };
+const priceCal=(w)=>{
+  return 10 * w
+}
+
+
   let details =
     "bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2";
   let h2 = "py-4 font-bold";
@@ -93,38 +100,88 @@ export default function Request() {
               )}
               <div className="my-5">
                 <input
-                  onChange={handleValue}
-                  value={requests.destination}
+
+                  {...register("pickup", {
+                    required: "Enter Pickup Point"})}
                   type="text"
-                  placeholder="Where is Parcel?"
+                  placeholder="Parcel Pickup Point"
+                  name="pickup"
+                  id=""
+                  className={errors.pickup ? estyle : style}
+                />
+                {errors.pickup && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.pickup?.message}
+                  </p>
+                )}
+              </div>
+              <div className="my-5">
+              <input
+                  onChange={handleValue}
+                  {...register("destination", {
+                    required: "Enter Destination"})}
+                  type="text"
+                  placeholder="Parcel Destination"
                   name="destination"
                   id=""
-                  className=" px-2 w-full placeholder-[#000] h-12 font-bold "
+                  className={errors.destination ? estyle : style}
                 />
+                {errors.destination && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.destination?.message}
+                  </p>
+                )}
               </div>
               <div className="my-5">
-                <input
-                  value={requests.locations}
+              <input
+                  onChange={handleValue}
+                  {...register("item", {
+                    required: "Enter Item Information"})}
                   type="text"
-                  onChange={handleValue}
-                  placeholder="Parcel Destination?"
-                  name="locations"
-                  id=""
-                  className="h-12 px-2 w-full placeholder-[#000] font-bold"
+                  placeholder="Item Information"
+
+                  className={errors.item ? estyle : style}
                 />
+                {errors.item && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.item?.message}
+                  </p>
+                )}
               </div>
               <div className="my-5">
-                <input
-                  value={requests.weight}
-                  type="number"
-                  onChange={handleValue}
-                  placeholder="Weight(kg)"
-                  name="weight"
-                  id=""
-                  className="h-12 px-2 w-full placeholder-[#000] font-bold"
+              <input
+
+                  {...register("weight", {
+                    required: "Enter Parcel Weight"})}
+                  type="text"
+                  placeholder="Enter Parcel Weight"
+
+                  className={errors.weight? estyle : style}
                 />
+                {errors.weight && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.weight?.message}
+                  </p>
+                )}
               </div>
-              <div onClick={handleChange} className="text-center pt-5 ">
+              <div  onClick={handleSubmit(async (data) => {
+
+
+setRequests({
+  transaction_id: DataTypes.STRING,
+    total_price:priceCal(data.weight) ,
+    status: 'ready',
+    order_location: data.pickup,
+    delivery_location: data.destination,
+    type: data.item,
+    weight: data.weight,
+})
+setNext(!next);
+})} className="text-center pt-5 ">
                 <button className="bg-green-400 py-2 text-white px-4">
                   Process Request
                 </button>

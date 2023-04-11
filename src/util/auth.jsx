@@ -11,11 +11,7 @@ const useAuth=()=>{
 
 const AuthContext = createContext()
 function AuthProvider({user}) {
-  console.log(user)
-  const isAuth =true
-// if (!isAuth){
-//     throw  redirect('/signin')
-// }
+
     return user ? <Outlet/> : <Navigate to='/signin'/>
 }
 
