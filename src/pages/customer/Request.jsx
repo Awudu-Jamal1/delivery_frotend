@@ -2,6 +2,8 @@ import { useState } from "react";
 import {FaGreaterThan} from "react-icons/fa"
 import Success from "../../components/modals/success";
 import { useForm } from "react-hook-form";
+import shortId from "short-unique-id";
+
 
 export default function Request() {
   const [next, setNext] = useState(false);
@@ -12,7 +14,7 @@ export default function Request() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const uid = new shortId({ length: 12 });
   const estyle =
   "mt-2 block h-12 w-full order-0 px-3 bg-rose-100 py-1.5 text-gray-900 ring-1 ring-inset ring-red-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
 
@@ -35,7 +37,7 @@ const priceCal=(w)=>{
 
 
   let details =
-    "bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2";
+    "bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-3 gap-2";
   let h2 = "py-4 font-bold";
   return (
     <>
@@ -54,32 +56,36 @@ const priceCal=(w)=>{
                   <div className={details}>
                     <div>
                       <p className="font-bold py-1">OrderId</p>
-                      <p> #2516gghghf</p>
+                      <p> {requests.transaction_id}</p>
+                    </div>
+                    <div>
+                      <p className="font-bold py-1">Item Details</p>
+                      <p> {requests.type}</p>
                     </div>
                     <div>
                       <p className="font-bold py-1">Weight</p>
-                      <p> 2Kg</p>
+                      <p> {requests.weight}</p>
                     </div>
                   </div>
                 </div>
 
                 <div>
                   <h2 className={h2}>Delivery Address</h2>
-                  <div className={details}>
+                  <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
                     <div className="">
                       <p className="font-bold py-1">MyLocation</p>
-                      <p> Lashibi community 17</p>
+                      <p> {requests.order_location}</p>
                     </div>
                     <div>
                       <p className="font-bold py-1">Destination</p>
-                      <p> Mamobi Parliament house</p>
+                      <p> {requests.delivery_location}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="pt-5 grid grid-cols-2">
                 <div className="text-center">
-                  Total price <p className="font-bold"> 4.18</p>
+                  Total price <p className="font-bold"> {requests.total_price}</p>
                 </div>
                 <div>
                   <button className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
@@ -172,7 +178,7 @@ const priceCal=(w)=>{
 
 
 setRequests({
-  transaction_id: DataTypes.STRING,
+  transaction_id: uid(),
     total_price:priceCal(data.weight) ,
     status: 'ready',
     order_location: data.pickup,
