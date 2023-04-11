@@ -3,12 +3,14 @@ import {FaGreaterThan} from "react-icons/fa"
 import Success from "../../components/modals/success";
 import { useForm } from "react-hook-form";
 import shortId from "short-unique-id";
+import parceltransfer from "../../services/parceltransfer";
 
 
 export default function Request() {
   const [next, setNext] = useState(false);
   const [required, setRequired] = useState(false);
   const [requests, setRequests] = useState({ });
+  const [model,setModel]=useState(false)
   const {
     register,
     handleSubmit,
@@ -41,7 +43,7 @@ const priceCal=(w)=>{
   let h2 = "py-4 font-bold";
   return (
     <>
-    <Success/>
+    {model && <Success/>}
       <div className="flex justify-center ">
 
         <div className=" w-[40em] py-10 px-12 bg-[#f7fff7]">
@@ -88,7 +90,9 @@ const priceCal=(w)=>{
                   Total price <p className="font-bold"> {requests.total_price}</p>
                 </div>
                 <div>
-                  <button className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
+                  <button onClick={()=>{
+                    setModel(true)
+                  }} className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
                     Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
                   </button>
                 </div>
@@ -176,17 +180,34 @@ const priceCal=(w)=>{
               </div>
               <div  onClick={handleSubmit(async (data) => {
 
-
-setRequests({
-  transaction_id: uid(),
-    total_price:priceCal(data.weight) ,
-    status: 'ready',
-    order_location: data.pickup,
-    delivery_location: data.destination,
-    type: data.item,
-    weight: data.weight,
+const datas =({
+  "order": {
+    "transaction_id": uid(),
+    "role":"1",
+    "Total_price": "15000",
+    "From": data.pickup,
+    "To": data.destination,
+    "status": "ready",
+    "type": "Customer"
+  },
+  "item": {
+    "product_name": data.item,
+    "quantity": data.quantity
+  }
 })
+
+try {
+ const response = await parceltransfer.accept(datas)
+ console.log(response)
+
+
+} catch (error) {
+  console.log(error)
+
+}
+
 setNext(!next);
+
 })} className="text-center pt-5 ">
                 <button className="bg-green-400 py-2 text-white px-4">
                   Process Request

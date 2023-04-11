@@ -123,7 +123,7 @@ export default function Login() {
 
                       dispatch(login(response.user))
                       dispatch(setTokens(response.token))
-                      // navigate('/')
+                      navigate('/')
                     //   login.
                     } catch (error) {
                       console.log("User Login error");
