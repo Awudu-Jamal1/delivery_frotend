@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
 
-export default function Intro() {
+export default function Intro({user}) {
   let style = "bg-[#f7fff7] py-5 px-5";
   let isstyle = "bg-my-blue py-5 px-5 text-white";
   let Nsvg = "fill-my-blue stroke-my-blue h-14";
   let Asvg = "fill-my-blue stroke-white h-14";
   let areq = "fill-white stroke-white h-14";
   let label = "my-4";
+
   return (
     <>
       <div className="py-5">
         <div className="text-center py-16">
-          <h1>Welcome Awudu Jamal</h1>
+          <h1>Welcome {user?.lastName}</h1>
         </div>
         <div className="grid grid-cols-3 text-center">
           <NavLink

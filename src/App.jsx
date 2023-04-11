@@ -23,6 +23,10 @@ import AgentAcc from './pages/Account/Agentacc'
 import MerchantAcc from './pages/Account/Merchantacc'
 import LoggedUser from './components/loggedUser'
 import AuthProvider from './util/auth'
+import ProtectedRoute from './util/protect'
+import Landing from './components/Landing'
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userAcc/users'
 
 
 const router = createBrowserRouter([
@@ -82,25 +86,31 @@ const router = createBrowserRouter([
     ]
   },
  ]);
- const InnerRoutes=<Route element={AuthProvider} errorElement={<ErrorPage/>}><Route  path='/' element={<Userpage />} >
 
-  <Route element={<Tracking />} index errorElement={<ErrorPage/>}></Route>
-  <Route element={<Request />} path='request' errorElement={<ErrorPage/>}></Route></Route>
 
- </Route>
 function App() {
+  let logged = useSelector(selectUser)
+  const user =logged
+  // console.log(logged.role)
+  // console.log(user)
+
+  const status = user?.role === "Agent"? true: false
+  // const role = user?.role === "Customer" || user?.role ==="Merchant"?['Access']:''
   return (
     <div>
       <Router>
         <Routes>
 
-          <Route element={<Layout />} errorElement={<ErrorPage/>} >{!AuthProvider?
-            <Route element={<Homepage/>} path='/'/>:
-
-              InnerRoutes
-
-
-            }
+          <Route element={<Layout />} errorElement={<ErrorPage/>} >
+            <Route element={<Landing users={user}/>} path='/'>
+           {status? <Route  element= {<AuthProvider user={!!user && (user?.role === 'Agent')}/> }>
+          <Route index element={<Requests/>}/>
+          <Route path="stats" element={ <Stats/>}/>
+          </Route>:
+          <Route  element= {<AuthProvider user={!!user && (user?.role === 'Customer')||(user?.role === 'Merchant')}/> }>
+          <Route index element={<Tracking/>}/>
+          <Route path="request" element={ <Request/>}/>
+          </Route>}  </Route>
             <Route  path= "signin" element= {<Login/>} errorElement={<ErrorPage/>}/>
 
 

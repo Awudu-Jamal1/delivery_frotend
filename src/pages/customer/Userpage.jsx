@@ -6,7 +6,8 @@ import ProgressBar from "./progress/ProgressBar";
 import Request from "./Request";
 import Tracking from "./tracking";
 
-export default function Userpage() {
+export default function Userpage({user}) {
+
 
   return (
     <>
@@ -15,7 +16,7 @@ export default function Userpage() {
         <div >
         <div className="">
             <div className="flex justify-center ">
-            <Intro/>
+            <Intro user={user}/>
             </div>
 <Outlet/>
           {/* <Request/> */}

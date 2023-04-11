@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from "react-redux";
 import { login,selectUser,setTokens } from "../../features/userAcc/users";
@@ -9,7 +9,8 @@ import UserAuthenticate from "../../services/UserAuthenticate";
 export default function Login() {
     let dispatch =useDispatch()
     let using = useSelector(selectUser)
-    console.log(using.user)
+    let navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -119,12 +120,14 @@ export default function Login() {
                     try {
                       let response = (await UserAuthenticate.logins(datas)).data
 
-                      console.log(response);
+
                       dispatch(login(response.user))
                       dispatch(setTokens(response.token))
+                      // navigate('/')
                     //   login.
                     } catch (error) {
                       console.log("User Login error");
+
                     }
                   })}
                 >
