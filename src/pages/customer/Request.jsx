@@ -6,7 +6,7 @@ import shortId from "short-unique-id";
 import parceltransfer from "../../services/parceltransfer";
 
 
-export default function Request() {
+export default function Request({user}) {
   const [next, setNext] = useState(false);
   const [required, setRequired] = useState(false);
   const [requests, setRequests] = useState({ });
@@ -24,7 +24,8 @@ const style =
   "mt-2 block h-12 w-full h-10 order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
 
 
-
+// const status =user.role
+const statusid =user.user.Customers[0]?.id
 
   const handleValue = (e) => {
     let name = e.target.name;
@@ -58,15 +59,15 @@ const priceCal=(w)=>{
                   <div className={details}>
                     <div>
                       <p className="font-bold py-1">OrderId</p>
-                      <p> {requests.transaction_id}</p>
+                      <p> {requests.order.transaction_id}</p>
                     </div>
                     <div>
                       <p className="font-bold py-1">Item Details</p>
-                      <p> {requests.type}</p>
+                      <p> {requests.item.product_name}</p>
                     </div>
                     <div>
                       <p className="font-bold py-1">Weight</p>
-                      <p> {requests.weight}</p>
+                      <p> {requests.order.weight}</p>
                     </div>
                   </div>
                 </div>
@@ -76,22 +77,31 @@ const priceCal=(w)=>{
                   <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
                     <div className="">
                       <p className="font-bold py-1">MyLocation</p>
-                      <p> {requests.order_location}</p>
+                      <p> {requests.order.From}</p>
                     </div>
                     <div>
                       <p className="font-bold py-1">Destination</p>
-                      <p> {requests.delivery_location}</p>
+                      <p> {requests.order.To}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="pt-5 grid grid-cols-2">
                 <div className="text-center">
-                  Total price <p className="font-bold"> {requests.total_price}</p>
+                  Total price <p className="font-bold"> {requests.order.Total_price}</p>
                 </div>
                 <div>
-                  <button onClick={()=>{
-                    setModel(true)
+                  <button onClick={async()=>{
+
+                    try {
+                      const response = await  parceltransfer.accept(requests)
+                      console.log(response)
+
+
+                     } catch (error) {
+                       console.log(error)
+
+                     }finally{ setModel(true)}
                   }} className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
                     Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
                   </button>
@@ -180,31 +190,25 @@ const priceCal=(w)=>{
               </div>
               <div  onClick={handleSubmit(async (data) => {
 
-const datas =({
+
+setRequests({
   "order": {
     "transaction_id": uid(),
-    "role":"1",
-    "Total_price": "15000",
+    "role":statusid,
+    "Total_price": `${priceCal(data.weight)}`,
     "From": data.pickup,
     "To": data.destination,
     "status": "ready",
-    "type": "Customer"
+    "type": user.role,
+    "weight":data.weight
   },
   "item": {
     "product_name": data.item,
     "quantity": data.quantity
   }
+
 })
 
-try {
- const response = await parceltransfer.accept(datas)
- console.log(response)
-
-
-} catch (error) {
-  console.log(error)
-
-}
 
 setNext(!next);
 

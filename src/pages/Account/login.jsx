@@ -112,7 +112,7 @@ export default function Login() {
                   onClick={handleSubmit(async (data) => {
 
                     let datas = {
-                      roles: "Customer",
+                      role: "Customer",
                       email: data.email,
                       password: data.password,
                     };

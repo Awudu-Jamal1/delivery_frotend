@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./stepper.css";
 import { TiTick } from "react-icons/ti";
-const Stepper = () => {
+const Stepper = ({status}) => {
   const steps = ["Pickup Ready", "Courier Assigned", "Deliverying", "Delivered"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
+  console.log(status)
   return (
     <>
       <div className="flex justify-between py-3">

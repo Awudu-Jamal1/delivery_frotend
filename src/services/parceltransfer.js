@@ -2,12 +2,12 @@ import Api from './Api'
 
 export default {
     accept( info){
-        return Api().post('user/signup',{user:items})
+        return Api().post('/order',info)
 
     },
-    // logins( user){
-    //     return Api().post('user/login',user)
+    getTransaction( info){
+        return Api().get('/order',{params:info})
 
-    // }
+    }
 
 }

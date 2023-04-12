@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
 import Stepper from "./steppers";
+import { useLoaderData} from "react-router-dom";
+import parceltransfer from "../../../services/parceltransfer";
 
 export default function ProgressBars() {
+  const orders = useLoaderData()
+  const [res,setRes]=useState({})
+  useEffect(()=>{
+    let fetched =async()=>{
+    const response= (await parceltransfer.getTransaction({"Id":3,"type":"Customer"})).data
+
+    setRes(response.orders)
+  }
+  fetched()
+
+},[])
+
+   console.log(res)
   return (
     <>
     <div >
@@ -15,7 +31,7 @@ export default function ProgressBars() {
           </div>
 
         </div>
-        <Stepper/>
+        {res.map((e,i)=> <div className=" my-3 pt-4"><Stepper key={i} status ={e.status}/></div>)}
       </div>
     </div>
 

@@ -6,8 +6,14 @@ import SignUp from './pages/Account/SignUp'
 import Homepage from './pages/Home/homepage'
 import {
   createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Router,
   RouterProvider,
-  BrowserRouter as Router,Routes,Route
+  Routes,
+
+  // BrowserRouter as Router,Routes,Route,
+
 } from "react-router-dom";
 import Layout from './components/Layout'
 import ErrorPage from './components/Errorpage'
@@ -27,9 +33,10 @@ import ProtectedRoute from './util/protect'
 import Landing from './components/Landing'
 import { useSelector } from 'react-redux'
 import { selectUser } from './features/userAcc/users'
+import parceltransfer from './services/parceltransfer'
 
 
-const router = createBrowserRouter([
+const routir = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
@@ -89,34 +96,54 @@ const router = createBrowserRouter([
 
 
 function App() {
+
+
+
+
   let logged = useSelector(selectUser)
   const user =logged
   // console.log(logged.role)
   // console.log(user)
 
   const status = user?.role === "Agent"? true: false
+  const statusid =user.user.Customers[0]?.id
   // const role = user?.role === "Customer" || user?.role ==="Merchant"?['Access']:''
+
+  const router =createBrowserRouter(
+    createRoutesFromElements(
+      <Route>
+      <Route>
+
+        <Route element={<Layout />} errorElement={<ErrorPage/>} >
+          <Route element={<Landing loader={async()=>{
+  const response= await parceltransfer.getTransaction({"Id":statusid,"type":user?.role})
+  return response
+        }}  users={user}/>} path='/'>
+         {status? <Route  element= {<AuthProvider user={!!user && (user?.role === 'Agent')}/> }>
+        <Route index element={<Requests/>}/>
+        <Route path="stats" element={ <Stats/>}/>
+        </Route>:
+        <Route  element= {<AuthProvider user={!!user && (user?.role === 'Customer')||(user?.role === 'Merchant')}/> }>
+        <Route index element={<Tracking/>}/>
+        <Route path="request" element={ <Request user={user}/>}/>
+        </Route>}  </Route>
+          <Route  path= "signin" element= {<Login/>} errorElement={<ErrorPage/>}/>
+        </Route>
+      </Route>
+    </Route>
+
+    )
+  )
+
+
+
+
+
+
+
   return (
     <div>
-      <Router>
-        <Routes>
-
-          <Route element={<Layout />} errorElement={<ErrorPage/>} >
-            <Route element={<Landing users={user}/>} path='/'>
-           {status? <Route  element= {<AuthProvider user={!!user && (user?.role === 'Agent')}/> }>
-          <Route index element={<Requests/>}/>
-          <Route path="stats" element={ <Stats/>}/>
-          </Route>:
-          <Route  element= {<AuthProvider user={!!user && (user?.role === 'Customer')||(user?.role === 'Merchant')}/> }>
-          <Route index element={<Tracking/>}/>
-          <Route path="request" element={ <Request/>}/>
-          </Route>}  </Route>
-            <Route  path= "signin" element= {<Login/>} errorElement={<ErrorPage/>}/>
-
-
-          </Route>
-        </Routes>
-      </Router>
+     <RouterProvider router={router} />
     </div>
 
     // <RouterProvider router={router} />
