@@ -123,6 +123,7 @@ export default function Login() {
 
                       dispatch(login(response.user))
                       dispatch(setTokens(response.token))
+
                       navigate('/')
                     //   login.
                     } catch (error) {

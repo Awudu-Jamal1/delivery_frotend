@@ -102,11 +102,11 @@ function App() {
 
   let logged = useSelector(selectUser)
   const user =logged
-  // console.log(logged.role)
-  // console.log(user)
+  console.log(logged)
+  //  console.log("Info" , user)
 
   const status = user?.role === "Agent"? true: false
-  const statusid =user.user.Customers[0]?.id
+  const statusid =user?.Customers[0]?.id
   // const role = user?.role === "Customer" || user?.role ==="Merchant"?['Access']:''
 
   const router =createBrowserRouter(
@@ -115,10 +115,12 @@ function App() {
       <Route>
 
         <Route element={<Layout />} errorElement={<ErrorPage/>} >
-          <Route element={<Landing loader={async()=>{
+          <Route element={<Landing
+           loader={async()=>{
   const response= await parceltransfer.getTransaction({"Id":statusid,"type":user?.role})
   return response
-        }}  users={user}/>} path='/'>
+        }}
+         users={user}/>} path='/'>
          {status? <Route  element= {<AuthProvider user={!!user && (user?.role === 'Agent')}/> }>
         <Route index element={<Requests/>}/>
         <Route path="stats" element={ <Stats/>}/>

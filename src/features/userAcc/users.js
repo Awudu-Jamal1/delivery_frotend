@@ -17,15 +17,15 @@ reducers:{
         state.token=action.payload
     },
     logout:(state,action)=>{
-        state.user =null
+        state.user =action.payload
         state.logged=false
-        state.token=null
+        state.token=action.payload
     }
 }
 })
 
-export const {login,logout,setTokens} = userInfo.actions
-export const selectUser =(state)=>state.user
-// export const setToken =(state) =>state.
+export const {login,logout,setTokens,logged} = userInfo.actions
+export const selectUser =(state)=>state.user.user
+
 
 export default userInfo.reducer;

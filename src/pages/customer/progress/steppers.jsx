@@ -3,9 +3,9 @@ import "./stepper.css";
 import { TiTick } from "react-icons/ti";
 const Stepper = ({status}) => {
   const steps = ["Pickup Ready", "Courier Assigned", "Deliverying", "Delivered"];
-  const [currentStep, setCurrentStep] = useState(1);
+  const currentStep = parseInt(status);
   const [complete, setComplete] = useState(false);
-  console.log(status)
+
   return (
     <>
       <div className="flex justify-between py-3">
@@ -26,7 +26,7 @@ const Stepper = ({status}) => {
       <div className="py-5 text-my-blue detail text-center">
 Searching For Courier
       </div>
-      {!complete && (
+      {/* {!complete && (
         <button
           className="btn"
           onClick={() => {
@@ -36,8 +36,9 @@ Searching For Courier
           }}
         >
           {currentStep === steps.length ? "Finish" : "Next"}
+
         </button>
-      )}
+      )} */}
     </>
   );
 };

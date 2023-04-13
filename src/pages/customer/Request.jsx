@@ -25,14 +25,14 @@ const style =
 
 
 // const status =user.role
-const statusid =user.user.Customers[0]?.id
+const statusid =user?.Customers[0]?.id
 
   const handleValue = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setRequests((values) => ({ ...values, [name]: value }));
   };
-  console.log(requests);
+
 
 const priceCal=(w)=>{
   return 10 * w
@@ -198,7 +198,7 @@ setRequests({
     "Total_price": `${priceCal(data.weight)}`,
     "From": data.pickup,
     "To": data.destination,
-    "status": "ready",
+    "status": 1,
     "type": user.role,
     "weight":data.weight
   },

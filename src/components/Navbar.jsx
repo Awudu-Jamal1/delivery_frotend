@@ -4,6 +4,9 @@ import { Bars3Icon, XMarkIcon } from  '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { SlWallet  } from "react-icons/sl";
 
+import { useDispatch,useSelector } from "react-redux";
+import { login, logout, setTokens } from '../features/userAcc/users';
+
 const navigation = [
   { name: 'About', href: 'about' },
   { name: 'Pricing', href: 'pricing' },
@@ -13,6 +16,7 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const dispatch = useDispatch();
 
   return (
     <div className="">
@@ -54,7 +58,12 @@ export default function Navbar() {
 
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
+
             </div>
+            <div><button onClick={()=>{
+dispatch(logout(null))
+console.log('JJJJJJ')
+            }}>Logout</button></div>
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
