@@ -205,7 +205,7 @@ export default function MerchantAcc (){
               onClick={handleSubmit(async(data) => {
                 console.log(data);
                 let datas ={"User":{"role":"Merchant",
-  "firstName":data.firstnames,
+  "firstName":data.first,
   "lastName":data.lastname,
   "email":data.email,
   "password":data.password,
@@ -216,9 +216,9 @@ export default function MerchantAcc (){
 }
 
                 try {
-                  let response = await axios.post('http://localhost:8081/user',datas)
-                  console.log(response)
-                  navigate('/signin')
+                  console.log(datas)
+                  let response = (await UserAuthenticate.register(datas)).data
+                  console.log(response.user)
                 } catch (error) {
                   console.log("User create error")
                 }

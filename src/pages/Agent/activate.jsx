@@ -1,8 +1,6 @@
-
 import { useLoaderData } from 'react-router-dom';
 import Delivery from './delivery';
-
-const Requests = () => {
+function Activate() {
     const data = useLoaderData();
     const datas = data ?data.orders: []
 
@@ -11,4 +9,4 @@ const Requests = () => {
     </> );
 }
 
-export default Requests;
+export default Activate;

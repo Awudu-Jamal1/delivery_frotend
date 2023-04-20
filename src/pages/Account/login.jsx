@@ -94,7 +94,7 @@ export default function Login() {
                   Select Status:{" "}
                 </label>
                 <select {...register("Status")} id="status">
-                  <option value="Customer">User</option>
+                  <option value="Customer">Customer</option>
                   <option value="Merchant">Merchant</option>
                   <option value="Agent">Agent</option>
                 </select>

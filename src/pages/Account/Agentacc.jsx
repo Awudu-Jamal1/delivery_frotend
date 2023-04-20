@@ -1,44 +1,58 @@
 import { useForm } from "react-hook-form";
-import axios, { Axios } from 'axios'
+import { useNavigate } from "react-router-dom";
+import UserAuthenticate from "../../services/UserAuthenticate";
 
-export default function AgentAcc (){
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        watch,
-      } = useForm();
+export default function AgentAcc() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
-    const style = "mt-2 block w-full order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  "
-    const labels ="block text-md font-bold"
-    return(
+  let navigate = useNavigate();
 
-        <>
-        <div className="border w-[45em] signup py-2  px-8">
-            <div className="text-center">
-                <h1 className="text-3xl py-3 font-bold">Create A Agent Account</h1>
-                <p className="px-16 py-5">Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo! Consequuntur, expedita?</p>
-            </div>
-            <div>
-                <form action="" className="max-sm:text-[0.9em]" method="post">
-                    <div className="grid grid-cols-2 gap-10 py-2">
-                        <div className=" ">
-                            <label htmlFor="" className={labels}>First Name</label>
-                            <input
-                  {...register("firstnames", { required: "Enter first name" })}
+  const style =
+    "mt-2 block w-full order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
+  const estyle =
+    "mt-2 block w-full order-0 px-3 bg-rose-100 py-1.5 text-gray-900 ring-1 ring-inset ring-red-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
+
+  const labels = "block text-md font-bold";
+  return (
+    <>
+      <div className="border w-[45em] signup py-2  px-8">
+        <div className="text-center">
+          <h1 className="text-3xl py-3 font-bold">Create A Agent Account</h1>
+          <p className="px-16 py-5">
+            Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo!
+            Consequuntur, expedita?
+          </p>
+        </div>
+        <div>
+          <form action="" className="max-sm:text-[0.9em]" method="post">
+            <div className="grid grid-cols-2 gap-10 py-2">
+              <div className=" ">
+                <label htmlFor="" className={labels}>
+                  First Name
+                </label>
+                <input
+                  {...register("firsts", { required: "Enter first name" })}
                   name
                   type="text"
-                  className={errors.firstnames ? estyle : style}
+                  className={errors.firsts ? estyle : style}
                   placeholder="Enter your First Name"
                 />
-                {errors.firstnames && (
+                {errors.firsts && (
                   <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
-                    {errors.firstname?.message}
+                    {errors.firsts?.message}
                   </p>
-                )}</div>
-                        <div>
-                            <label htmlFor=""className={labels}>Last Name</label>
-                            <input
+                )}
+              </div>
+              <div>
+                <label htmlFor="" className={labels}>
+                  Last Name
+                </label>
+                <input
                   type="text"
                   {...register("lastname", { required: "Enter Last name" })}
                   className={errors.lastname ? estyle : style}
@@ -49,14 +63,16 @@ export default function AgentAcc (){
                     {" "}
                     {errors.lastname?.message}
                   </p>
-                )}</div>
+                )}
+              </div>
+            </div>
 
-                    </div>
-
-                    <div className="grid grid-cols-1  py-2">
-                        <div className=" ">
-                            <label htmlFor="" className={labels}>Email Address</label>
-                            <input
+            <div className="grid grid-cols-1  py-2">
+              <div className=" ">
+                <label htmlFor="" className={labels}>
+                  Email Address
+                </label>
+                <input
                   type="email"
                   {...register("email", {
                     required: "Enter Email",
@@ -73,13 +89,13 @@ export default function AgentAcc (){
                     {" "}
                     {errors.email?.message}
                   </p>
-                )}</div>
-
-                    </div>
-                    <div className="grid grid-cols-3 gap-10 py-2">
-                        <div className=" ">
-                            <label  className={labels}>Phone Number</label>
-                            <input
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-10 py-2">
+              <div className=" ">
+                <label className={labels}>Phone Number</label>
+                <input
                   type="text"
                   {...register("phone", {
                     required: "Enter Phone number",
@@ -93,12 +109,13 @@ export default function AgentAcc (){
                     {" "}
                     {errors.phone?.message}
                   </p>
-                )}</div>
-                        <div>
-                            <label className={labels}>Business Address</label>
-                            <input
+                )}
+              </div>
+              <div>
+                <label className={labels}>Address</label>
+                <input
                   type="text"
-                  {...register("address", { required: "Enter Business Address" })}
+                  {...register("address", { required: "Enter Address" })}
                   className={errors.address ? estyle : style}
                   placeholder="Enter Business Address"
                 />
@@ -107,10 +124,13 @@ export default function AgentAcc (){
                     {" "}
                     {errors.address?.message}
                   </p>
-                )}</div>
-                <div className=" ">
-                            <label htmlFor="" className={labels}>Vehicle Number</label>
-                            <input
+                )}
+              </div>
+              <div className=" ">
+                <label htmlFor="" className={labels}>
+                  Vehicle Number
+                </label>
+                <input
                   type="text"
                   {...register("vehicle", { required: "Enter Vehicle Number" })}
                   className={errors.vehicle ? estyle : style}
@@ -121,12 +141,15 @@ export default function AgentAcc (){
                     {" "}
                     {errors.vehicle?.message}
                   </p>
-                )}</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-10 py-2">
-                        <div className=" ">
-                            <label htmlFor="" className={labels}>Password</label>
-                            <input
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-10 py-2">
+              <div className=" ">
+                <label htmlFor="" className={labels}>
+                  Password
+                </label>
+                <input
                   type="password"
                   {...register("password", {
                     required: "Enter Password",
@@ -152,10 +175,13 @@ export default function AgentAcc (){
                     {" "}
                     {errors.password?.message}
                   </p>
-                )}</div>
-                        <div>
-                            <label htmlFor=""className={labels}>Confirm Password</label>
-                            <input
+                )}
+              </div>
+              <div>
+                <label htmlFor="" className={labels}>
+                  Confirm Password
+                </label>
+                <input
                   autoComplete="false"
                   {...register("compare", {
                     required: true,
@@ -175,35 +201,44 @@ export default function AgentAcc (){
                     {" "}
                     {errors.compare?.message}
                   </p>
-                )}</div>
-                    </div>
-                </form>
-                <div className="flex justify-center py-6 "><button
+                )}
+              </div>
+            </div>
+          </form>
+          <div className="flex justify-center py-6 ">
+            <button
               className="w-30 py-3 px-3"
-              onClick={handleSubmit(async(data) => {
+              onClick={handleSubmit(async (data) => {
                 console.log(data);
-                let datas ={"User":{"role":"Agent",
-  "firstName":data.firstnames,
-  "lastName":data.lastname,
-  "email":data.email,
-  "password":data.password,
-  "phone":data.phone,
-  "address":data.address},
-  "roles":{"vehicle_number":data.vehicle}
-}
+                let datas = {
+                  User: {
+                    role: "Agent",
+                    firstName: data.firsts,
+                    lastName: data.lastname,
+                    email: data.email,
+                    password: data.password,
+                    phone: data.phone,
+                    address: data.address,
+                  },
+                  roles: {
+                    vehicle_number: data.vehicle,
+                  },
+                };
 
                 try {
-                  let response = await axios.post('http://localhost:8081/user',datas)
+                  console.log(datas);
+                  let response = (await UserAuthenticate.register(datas)).data;
+                  navigate("/signin");
                 } catch (error) {
-                  console.log("User create error")
+                  console.log("User create error");
                 }
-
               })}
             >
               Create Account
-            </button></div>
-            </div>
+            </button>
+          </div>
         </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
