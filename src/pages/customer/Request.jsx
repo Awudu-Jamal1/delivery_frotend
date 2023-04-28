@@ -4,6 +4,7 @@ import Success from "../../components/modals/success";
 import { useForm } from "react-hook-form";
 import shortId from "short-unique-id";
 import parceltransfer from "../../services/parceltransfer";
+import socket from "../../services/socket";
 
 
 export default function Request({user}) {
@@ -101,7 +102,8 @@ const priceCal=(w)=>{
                      } catch (error) {
                        console.log(error)
 
-                     }finally{ setModel(true)}
+                     }finally{ setModel(true)
+                      socket().emit('news',{ 'message': 'Ready'})}
                   }} className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
                     Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
                   </button>
@@ -208,6 +210,7 @@ setRequests({
   }
 
 })
+
 
 
 setNext(!next);

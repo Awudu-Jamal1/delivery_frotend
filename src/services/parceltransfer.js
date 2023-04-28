@@ -16,7 +16,7 @@ export default {
   request(id) {
     return Api().put(`order/getall/update`, id);
   },
-  active() {
-    return Api().get(`order/getall/active`);
+  active(id) {
+    return Api().get(`order/getall/active`,{params:id});
   },
 };

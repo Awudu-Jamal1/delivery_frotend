@@ -40,7 +40,8 @@ function App() {
   const user = logged;
 
   const status = user?.role === "Agent" ? true : false;
-  const statusid = user?.Customers[0]?.id;
+  // const statusid = user?.Customers[0]?.id;
+const agentId =user?.Agents ? user?.Agents[0]?.id : ''
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -50,13 +51,13 @@ function App() {
             <Route
               element={
                 <Landing
-                  loader={async () => {
-                    const response = await parceltransfer.getTransaction({
-                      Id: statusid,
-                      type: user?.role,
-                    });
-                    return response;
-                  }}
+                  // loader={async () => {
+                  //   const response = await parceltransfer.getTransaction({
+                  //     Id: statusid,
+                  //     type: user?.role,
+                  //   });
+                  //   return response;
+                  // }}
                   users={user}
                 />
               }
@@ -70,16 +71,16 @@ function App() {
                 >
                   <Route
                     index
-                    element={<Requests />}
+                    element={<Requests user={user}  />}
                     loader={async () => {
                       return (await parceltransfer.getall()).data;
                     }}
                   />
                   <Route
                     path="request"
-                    element={<Activate />}
+                    element={<Activate  />}
                     loader={async () => {
-                      return (await parceltransfer.active()).data;
+                      return (await parceltransfer.active({id:agentId})).data;
                     }}
                   />
                   <Route path="stats" element={<Stats />} />

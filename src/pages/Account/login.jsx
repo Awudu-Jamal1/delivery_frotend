@@ -110,9 +110,10 @@ export default function Login() {
                 <button
                   className="w-40  text-center h-10 bg-red-500 text-white"
                   onClick={handleSubmit(async (data) => {
+                    console.log(data)
 
                     let datas = {
-                      role: "Customer",
+                      role: data.Status,
                       email: data.email,
                       password: data.password,
                     };

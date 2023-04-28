@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Intro from "./intro";
 
-const Agent = () => {
+const Agent = ({user}) => {
     return ( <>
     <div>
         <div className="flex justify-center">
-            <Intro/>
+            <Intro users={user}/>
         </div>
         <div>
             <Outlet/>

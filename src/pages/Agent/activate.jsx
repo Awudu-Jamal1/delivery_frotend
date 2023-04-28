@@ -5,7 +5,7 @@ function Activate() {
     const datas = data ?data.orders: []
 
     return ( <>
-    {datas?.map((e,i)=><div key={i}><Delivery data={e}/></div>)}
+    {datas?.map((e,i)=><div  key={i}><Delivery data={e}/></div>)}
     </> );
 }
 

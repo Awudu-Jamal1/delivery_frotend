@@ -1,38 +1,44 @@
 import { TfiPackage } from "react-icons/tfi";
 import parceltransfer from "../../services/parceltransfer";
+import {io} from "socket.io-client";
 
-function Delivery({ data }) {
-  console.log(data);
+const socket  = io('http://localhost:8081')
+
+function Delivery({ data,id }) {
+console.log(data)
   let main = "bg-[#f7fff7] px-4 py-1 h-24 rounded-2xl";
   let title = "leading-loose font-bold";
   const accept = async () => {
-    window.location.reload();
+    // window.location.reload();
     try {
-      await parceltransfer.request({ id: data.id, status: 2 });
+      // await parceltransfer.request({ id: data.id, status: 2,agent:id });
+      socket.emit('update',{ id: data.id, status: 2,agent:id })
     } catch (error) {
       console.log(error);
     }
   };
   const pickup = async () => {
-    window.location.reload();
+    // window.location.reload();
     try {
-      await parceltransfer.request({ id: data.id, status: 3 });
+      // await parceltransfer.request({ id: data.id, status: 3 });
+      socket.emit('update',{ id: data.id, status: 3})
     } catch (error) {
       console.log(error);
     }
   };
   const deliver = async () => {
-    window.location.reload();
+    // window.location.reload();
     try {
-      await parceltransfer.request({ id: data.id, status: 4 });
+      // await parceltransfer.request({ id: data.id, status: 4 });
+      socket.emit('update',{ id: data.id, status: 4,agent:id })
     } catch (error) {
       console.log(error);
-    }
+    }finally{window.location.reload();}
   };
   return (
     <>
       <div className="flex justify-center ">
-        <div className="border-4 border-current shadow-2xl my-4 px-2">
+        <div className="border-4 border-current shadow-2xl my-7 px-1">
           <div className=" grid grid-cols-5 gap-5 w-[45em] max-sm:w-[30em] py-5   ">
             <div className="">
               <div className=" h-full flex  justify-center items-center">
