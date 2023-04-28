@@ -1,39 +1,39 @@
 import { TfiPackage } from "react-icons/tfi";
 import parceltransfer from "../../services/parceltransfer";
-import {io} from "socket.io-client";
+import { io } from "socket.io-client";
 
-const socket  = io('http://localhost:8081')
+const socket = io("http://localhost:8081");
 
-function Delivery({ data,id }) {
-console.log(data)
+function Delivery({ data, id }) {
+  console.log(data);
   let main = "bg-[#f7fff7] px-4 py-1 h-24 rounded-2xl";
   let title = "leading-loose font-bold";
   const accept = async () => {
-    // window.location.reload();
     try {
-      // await parceltransfer.request({ id: data.id, status: 2,agent:id });
-      socket.emit('update',{ id: data.id, status: 2,agent:id })
+      socket.emit("update", { id: data.id, status: 2, agent: id });
     } catch (error) {
       console.log(error);
+    } finally {
+      window.location.reload();
     }
   };
   const pickup = async () => {
-    // window.location.reload();
     try {
-      // await parceltransfer.request({ id: data.id, status: 3 });
-      socket.emit('update',{ id: data.id, status: 3})
+      socket.emit("update", { id: data.id, status: 3 });
     } catch (error) {
       console.log(error);
+    } finally {
+      window.location.reload();
     }
   };
   const deliver = async () => {
-    // window.location.reload();
     try {
-      // await parceltransfer.request({ id: data.id, status: 4 });
-      socket.emit('update',{ id: data.id, status: 4,agent:id })
+      socket.emit("update", { id: data.id, status: 4, agent: id });
     } catch (error) {
       console.log(error);
-    }finally{window.location.reload();}
+    } finally {
+      window.location.reload();
+    }
   };
   return (
     <>

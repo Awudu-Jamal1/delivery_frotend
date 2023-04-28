@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import Stepper from "./steppers";
-import { useLoaderData} from "react-router-dom";
 import parceltransfer from "../../../services/parceltransfer";
-import {io} from "socket.io-client";
+import socket from "../../../services/socket";
 
-const socket  = io('http://localhost:8081')
-
-export default function ProgressBars() {
+export default function ProgressBars({id,type}) {
   const [res,setRes]=useState([])
   const [emit,setEmit]=useState([])
   const [catchs,setCatchs]=useState(false)
 
-  socket.on('update',(data)=>{
+  socket().on('update',(data)=>{
     setEmit(data)
     setCatchs(true)
   })
-  const orders = useLoaderData()
 
   let cm;
 
   useEffect(()=>{
     let fetched =async()=>{
-    const response= (await parceltransfer.getTransaction({"Id":3,"type":"Customer"})).data
+    const response= (await parceltransfer.getTransaction({"Id":id,"type":type})).data
 
     setRes(response.orders)
   }
@@ -30,8 +26,6 @@ export default function ProgressBars() {
 
 },[])
 cm = emit.filter((e,i) =>e.customer_id ==3)
-//  const realData = cm === undefined? res:emit
-console.log()
   return (
     <>
 

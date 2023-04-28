@@ -7,8 +7,8 @@ import Request from "./Request";
 import Tracking from "./tracking";
 
 export default function Userpage({user}) {
-
-
+const users= user.role ==='Merchant' ? user?.Merchant[0]?.id : user?.Customers[0]?.id
+console.log(user.role)
   return (
     <>
 
@@ -25,7 +25,7 @@ export default function Userpage({user}) {
         <div className="flex justify-center my-12">
 
           <div>
-          <ProgressBar/>
+          <ProgressBar id={users} type={user.role}/>
           </div>
         </div>
       </div>
