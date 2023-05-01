@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./stepper.css";
 import { TiTick } from "react-icons/ti";
-const Stepper = ({status}) => {
+import parceltransfer from "../../../services/parceltransfer";
+const Stepper = ({id,status}) => {
   const steps = ["Pickup Ready", "Courier Assigned", "Deliverying", "Delivered"];
   const currentStep = parseInt(status);
   const [complete, setComplete] = useState(false);
-
+console.log(id)
   return (
     <>
       <div className="flex justify-between py-3">
@@ -24,21 +25,44 @@ const Stepper = ({status}) => {
         ))}
       </div>
       <div className="py-5 text-my-blue detail text-center">
-Searching For Courier
+
       </div>
-      {/* {!complete && (
+       {currentStep === steps.length && (
         <button
-          className="btn"
-          onClick={() => {
-            currentStep === steps.length
-              ? setComplete(true)
-              : setCurrentStep((prev) => prev + 1);
-          }}
+        className="border h-[2.5em] border-my-blue w-[7em] text-my-blue font-bold hover:text-[#ffff] hover:bg-my-blue"
+        onClick={async() => {
+          try {
+            await parceltransfer.request({id:id, status:4})
+          } catch (error) {
+            console.log(error)
+          }finally {
+            window.location.reload();
+          }
+
+        }}
         >
-          {currentStep === steps.length ? "Finish" : "Next"}
+           Confirm
 
         </button>
-      )} */}
+      )}
+      {currentStep == 1 && (
+        <button
+        className="border h-[2.5em] border-rose-700 w-[7em] text-rose-700 font-bold hover:text-[#ffff] hover:bg-rose-700"
+          onClick={async() => {
+            try {
+              await parceltransfer.request({id:id, status:6,})
+            } catch (error) {
+              console.log(error)
+            }finally {
+              window.location.reload();
+            }
+
+          }}
+        >
+           Cancel
+
+        </button>
+      )}
     </>
   );
 };

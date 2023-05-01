@@ -26,6 +26,6 @@ reducers:{
 
 export const {login,logout,setTokens,logged} = userInfo.actions
 export const selectUser =(state)=>state.user.user
-
+export const loggin =(state)=> state.user.logged
 
 export default userInfo.reducer;

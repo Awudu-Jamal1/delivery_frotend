@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import { SlWallet  } from "react-icons/sl";
 
 import { useDispatch,useSelector } from "react-redux";
-import { login, logout, setTokens } from '../features/userAcc/users';
+import { login, logout, setTokens ,loggin} from '../features/userAcc/users';
+
 
 const navigation = [
   { name: 'About', href: 'about' },
@@ -17,6 +18,8 @@ const navigation = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dispatch = useDispatch();
+  const logof = useSelector(loggin)
+  console.log(logof)
 
   return (
     <div className="">
@@ -47,23 +50,23 @@ export default function Navbar() {
           <div className="hidden   lg:flex lg:flex-1 lg:justify-end">
             <div className='flex  justify-around  items-center w-2/4'>
             <div className='text-sm font-semibold leading-6'>
-            <div className='pl-1'>
+            {logof &&<div className='pl-1'>
             <SlWallet className=''/>
-            </div>
+            </div>}
 
             <div className=''>0.00</div>
             </div>
 
-            <Link to='signin' className="text-sm font-semibold leading-6">
+            {!logof && <Link to='signin' className="text-sm font-semibold leading-6">
 
               Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+            </Link>}
 
             </div>
-            <div><button onClick={()=>{
+            {logof && <div><button onClick={()=>{
 dispatch(logout(null))
-console.log('JJJJJJ')
-            }}>Logout</button></div>
+
+            }}>Logout</button></div>}
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -97,16 +100,20 @@ console.log('JJJJJJ')
                   ))}
                 </div>
                 <div className="py-6">
-                  <div className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white'>
+                  {logof &&<div className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white'>
                     <SlWallet/>
                     <span>0.00</span>
-                  </div>
-                  <Link
+                  </div>}
+                  {!logof &&<Link
                     to='signup'
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white"
                   >
                     Log in
-                  </Link>
+                  </Link>}
+                  {logof && <div><button onClick={()=>{
+dispatch(logout(null))
+
+            }}>Logout</button></div>}
                 </div>
               </div>
             </div>

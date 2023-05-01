@@ -14,11 +14,12 @@ const Requests = ({user}) => {
         setRefresh(true)
 
       })
-
+const evals = datas.length === 0 ? true :false
 
 
     return ( <>
 {refresh && <div><button className='bg-[]' onClick={()=>window.location.reload()}>New Orders</button></div> }
+{ evals && <div className='text-center mt-7'><h1>No Request Available</h1></div>}
     {datas?.map((e,i)=><div key={i}><Delivery data={e} id={id} /></div>)}
     </> );
 }

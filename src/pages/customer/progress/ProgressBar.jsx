@@ -26,6 +26,7 @@ export default function ProgressBars({id,type}) {
 
 },[])
 cm = emit.filter((e,i) =>e.customer_id ==3)
+console.log(id)
   return (
     <>
 
@@ -42,7 +43,7 @@ cm = emit.filter((e,i) =>e.customer_id ==3)
           </div>
 
         </div>
-        <div className=" my-3 pt-4"><Stepper  status ={e.status}/></div>
+        <div className=" my-3 pt-4"><Stepper  id={e.id} status ={e.status}/></div>
       </div>)):res.map((e,i)=>( <div  key={i} className="bg-[#f7fff7] text-[#000]  text-center py-3 my-6">
         <div className="">
           <div className="pl-12 my-4 font-bold">
@@ -52,7 +53,7 @@ cm = emit.filter((e,i) =>e.customer_id ==3)
           </div>
 
         </div>
-        <div className=" my-3 pt-4"><Stepper  status ={e.status}/></div>
+        <div className=" my-3 pt-4"><Stepper  id={e.id} status ={e.status}/></div>
       </div>))}
     </div>
 
