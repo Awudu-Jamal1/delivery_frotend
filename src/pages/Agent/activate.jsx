@@ -8,7 +8,7 @@ function Activate() {
     <>
       {evals && (
         <div className="text-center mt-7">
-          <h1>No Request Available</h1>
+          <h1>No Active Request </h1>
         </div>
       )}
       {datas?.map((e, i) => (

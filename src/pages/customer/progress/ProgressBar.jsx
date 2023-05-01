@@ -26,7 +26,6 @@ export default function ProgressBars({id,type}) {
 
 },[])
 cm = emit.filter((e,i) =>e.customer_id ==3)
-console.log(id)
   return (
     <>
 

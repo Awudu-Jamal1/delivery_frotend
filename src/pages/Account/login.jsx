@@ -1,8 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch,useSelector, useStore } from "react-redux";
 import { login,selectUser,setTokens } from "../../features/userAcc/users";
 import UserAuthenticate from "../../services/UserAuthenticate";
+import { SpinnerCircular } from 'spinners-react';
+import { useState } from "react";
+
+
 
 
 
@@ -10,7 +14,7 @@ export default function Login() {
     let dispatch =useDispatch()
     let using = useSelector(selectUser)
     let navigate = useNavigate()
-
+    const [shows,setShow]= useState(false)
   const {
     register,
     handleSubmit,
@@ -107,7 +111,7 @@ export default function Login() {
               </div>
 
               <div className=" flex py-5 justify-center">
-                <button
+               { !shows?<button
                   className="w-40  text-center h-10 bg-red-500 text-white"
                   onClick={handleSubmit(async (data) => {
                     console.log(data)
@@ -117,7 +121,7 @@ export default function Login() {
                       email: data.email,
                       password: data.password,
                     };
-
+setShow(true)
                     try {
                       let response = (await UserAuthenticate.logins(datas)).data
 
@@ -130,11 +134,14 @@ export default function Login() {
                     } catch (error) {
                       console.log("User Login error");
 
-                    }
+                    }finally{setShow(false)}
                   })}
                 >
                   Sign In
                 </button>
+               : <button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
+                <SpinnerCircular color="#ffff" size='1.5em' thickness='400'/>
+                </button>}
               </div>
             </form>
             <div className="text-center">

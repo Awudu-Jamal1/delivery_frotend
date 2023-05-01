@@ -2,11 +2,12 @@ import { useForm } from "react-hook-form";
 import{useNavigate} from  "react-router-dom"
 import axios, { Axios } from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCircleNotched } from '@fortawesome/free-solid-svg-icons'
+import { useState } from "react";
+import { SpinnerCircular } from 'spinners-react';
 
 export default function MerchantAcc (){
     let navigate = useNavigate()
-    let spinner =false
+    const [shows,setShow]=useState(false)
     let  spinnin= <div>
     {/* <FontAwesomeIcon icon={faCircleNotched} spin /> */}
     </div>
@@ -200,7 +201,7 @@ export default function MerchantAcc (){
                 )}</div>
                     </div>
                 </form>
-                <div className="flex justify-center py-6 ">{!spinner?(<button
+                <div className="flex justify-center py-6 ">{!shows?<button
               className="w-30 py-3 px-3"
               onClick={handleSubmit(async(data) => {
                 console.log(data);
@@ -214,19 +215,21 @@ export default function MerchantAcc (){
   "roles":{business_name: data.business,
     business_address: data.ba}
 }
-
+setShow(true)
                 try {
                   console.log(datas)
                   let response = (await UserAuthenticate.register(datas)).data
                   console.log(response.user)
                 } catch (error) {
                   console.log("User create error")
-                }
+                }finally{setShow(false)}
 
               })}
             >
               Create Account
-            </button>):spinnin}</div>
+            </button>:<button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
+                <SpinnerCircular color="#ffff" size='1.5em' thickness='400'/>
+                </button>}</div>
             </div>
         </div>
         </>

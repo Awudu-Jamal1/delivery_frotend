@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UserAuthenticate from "../../services/UserAuthenticate";
+import { useState } from "react";
+import { SpinnerCircular } from 'spinners-react';
 
 export default function AgentAcc() {
   const {
@@ -11,6 +13,7 @@ export default function AgentAcc() {
   } = useForm();
 
   let navigate = useNavigate();
+  const [shows,setShow]=useState(false)
 
   const style =
     "mt-2 block w-full order-0 px-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ";
@@ -206,7 +209,7 @@ export default function AgentAcc() {
             </div>
           </form>
           <div className="flex justify-center py-6 ">
-            <button
+            {!shows?<button
               className="w-30 py-3 px-3"
               onClick={handleSubmit(async (data) => {
                 console.log(data);
@@ -224,18 +227,20 @@ export default function AgentAcc() {
                     vehicle_number: data.vehicle,
                   },
                 };
-
+setShow(true)
                 try {
                   console.log(datas);
                   let response = (await UserAuthenticate.register(datas)).data;
                   navigate("/signin");
                 } catch (error) {
                   console.log("User create error");
-                }
+                }finally{setShow(false)}
               })}
             >
               Create Account
-            </button>
+            </button>:<button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
+                <SpinnerCircular color="#ffff" size='1.5em' thickness='400'/>
+                </button>}
           </div>
         </div>
       </div>

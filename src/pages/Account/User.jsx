@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios, { Axios } from 'axios'
 import UserAuthenticate from "../../services/UserAuthenticate";
+import { SpinnerCircular } from 'spinners-react';
 
 
 export default function User() {
+  const [shows,setShow]=useState(false)
  const {
     register,
     handleSubmit,
@@ -193,7 +195,7 @@ export default function User() {
             </div>
           </form>
           <div className="flex justify-center py-6 ">
-            <button
+           {!shows? <button
               className="w-30 py-3 px-3"
               onClick={handleSubmit(async(data) => {
                 console.log(data);
@@ -206,20 +208,22 @@ export default function User() {
   "address":data.address},
   "roles":{}
 }
-
+setShow(true)
                 try {
                   console.log(datas)
                   let response = (await UserAuthenticate.register(datas)).data
                   console.log(response.user)
                 } catch (error) {
                   console.log("User create error")
-                }
+                }finally{setShow(false)}
 
               })}
             >
               Create Account
-            </button>
-          </div>
+            </button>:<button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
+                <SpinnerCircular color="#ffff" size='1.5em' thickness='400'/>
+                </button>
+}          </div>
         </div>
       </div>
     </>
