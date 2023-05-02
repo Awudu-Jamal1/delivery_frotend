@@ -83,7 +83,10 @@ const agentId =user?.Agents ? user?.Agents[0]?.id : ''
                       return (await parceltransfer.active({id:agentId})).data;
                     }}
                   />
-                  <Route path="stats" element={<Stats />} />
+                  <Route path="stats" element={<Stats />}
+                    loader={async () => {
+                      return (await parceltransfer.historyA({id:agentId})).data;
+                    }} />
                 </Route>
               ) : (
                 <Route

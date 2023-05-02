@@ -18,5 +18,7 @@ export default {
   },
   active(id) {
     return Api().get(`order/getall/active`,{params:id});
+  },historyA(id) {
+    return Api().get(`order/history/agent`,{params:id});
   },
 };

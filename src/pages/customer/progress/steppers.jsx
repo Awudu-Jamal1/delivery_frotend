@@ -32,7 +32,7 @@ console.log(id)
         className="border h-[2.5em] border-my-blue w-[7em] text-my-blue font-bold hover:text-[#ffff] hover:bg-my-blue"
         onClick={async() => {
           try {
-            await parceltransfer.request({id:id, status:4})
+            await parceltransfer.request({id:id, status:5})
           } catch (error) {
             console.log(error)
           }finally {
