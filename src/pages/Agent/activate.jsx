@@ -16,6 +16,7 @@ function Activate() {
           <Delivery data={e} />
         </div>
       ))}
+
     </>
   );
 }

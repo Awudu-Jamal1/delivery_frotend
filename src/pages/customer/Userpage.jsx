@@ -14,7 +14,7 @@ console.log(user.role)
 
       <div>
         <div >
-        <div className="">
+        <div className="static">
             <div className="flex justify-center ">
             <Intro user={user}/>
             </div>

@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import shortId from "short-unique-id";
 import parceltransfer from "../../services/parceltransfer";
 import socket from "../../services/socket";
+import Sucess from "../../components/modals/notification/Sucess";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Request({user}) {
@@ -12,6 +14,7 @@ export default function Request({user}) {
   const [required, setRequired] = useState(false);
   const [requests, setRequests] = useState({ });
   const [model,setModel]=useState(false)
+  const navigate =useNavigate()
   const {
     register,
     handleSubmit,
@@ -45,7 +48,7 @@ const priceCal=(w)=>{
   let h2 = "py-4 font-bold";
   return (
     <>
-    {model && <Success/>}
+    {model && <div className="fixed right-1 top-[15em]"><Sucess/></div>}
       <div className="flex justify-center ">
 
         <div className=" w-[40em] py-10 px-12 bg-[#f7fff7]">
@@ -74,6 +77,20 @@ const priceCal=(w)=>{
                 </div>
 
                 <div>
+                  <h2 className={h2}>Receiver Details</h2>
+                  <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
+                    <div className="">
+                      <p className="font-bold py-1">Receiver Name</p>
+                      <p> {requests.order.reciever_name}</p>
+                    </div>
+                    <div>
+                      <p className="font-bold py-1">Receiver Number</p>
+                      <p> {requests.order.reciever_no}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
                   <h2 className={h2}>Delivery Address</h2>
                   <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
                     <div className="">
@@ -93,7 +110,7 @@ const priceCal=(w)=>{
                 </div>
                 <div>
                   <button onClick={async()=>{
-
+setModel(true)
                     try {
                       const response = await  parceltransfer.accept(requests)
                       console.log(response)
@@ -102,7 +119,8 @@ const priceCal=(w)=>{
                      } catch (error) {
                        console.log(error)
 
-                     }finally{ setModel(true)
+                     }finally{ setModel(false)
+                      navigate('/')
                       socket().emit('news',{ 'message': 'Ready'})}
                   }} className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
                     Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
@@ -120,6 +138,43 @@ const priceCal=(w)=>{
                   FILL IN ALL INPUT{" "}
                 </div>
               )}
+              <div className="my-5">
+                <input
+
+                  {...register("receivers", {
+                    required: "Enter Receiver Full Name"})}
+                  type="text"
+                  placeholder="Enter Receiver Full Name"
+                  name="receivers"
+                  id=""
+                  className={errors.receivers? estyle : style}
+                />
+                {errors.receivers && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.receivers?.message}
+                  </p>
+                )}
+              </div>
+              <div className="my-5">
+                <input
+
+                  {...register("numbs", {
+                    required: "Enter Receiver Number"})}
+                  type="text"
+                  placeholder="Enter Receiver Number"
+                  name="numbs"
+                  id=""
+                  className={errors.numbs? estyle : style}
+                />
+                {errors.numbs && (
+                  <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1 ">
+                    {" "}
+                    {errors.numbs?.message}
+                  </p>
+                )}
+              </div>
+
               <div className="my-5">
                 <input
 
@@ -191,11 +246,13 @@ const priceCal=(w)=>{
                 )}
               </div>
               <div  onClick={handleSubmit(async (data) => {
-
+console.log(data)
 
 setRequests({
   "order": {
     "transaction_id": uid(),
+    "reciever_name": data.receivers,
+    "reciever_no": data.numbs,
     "role":statusid,
     "Total_price": `${priceCal(data.weight)}`,
     "From": data.pickup,

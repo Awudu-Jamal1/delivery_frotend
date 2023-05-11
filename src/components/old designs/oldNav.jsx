@@ -1,14 +1,11 @@
 import { NavLink } from "react-router-dom";
 
-import { BsArrowRight } from 'react-icons/bs';
-
 export default function Intro({users}) {
-  let style = "bg-[#f7fff7] py-2 px-2  w-[32em] border my-2 h-[4em]";
-  let isstyle = "bg-my-blue py-2 px-2 text-white ";
-  let Nsvg = "fill-my-blue stroke-my-blue h-8";
-  let Asvg = "fill-white stroke-white h-8";
-  let areq = "fill-white stroke-my-blue h-8";
-  let contain ="grid grid-cols-3  "
+  let style = "bg-[#f7fff7] py-5 px-5";
+  let isstyle = "bg-my-blue py-5 px-5 text-white";
+  let Nsvg = "fill-my-blue stroke-my-blue h-14";
+  let Asvg = "fill-white stroke-white h-14";
+  let areq = "fill-white stroke-my-blue h-14";
   let label = "my-4 ";
   return (
     <>
@@ -16,14 +13,14 @@ export default function Intro({users}) {
         <div className="text-center py-16">
           <h1>Welcome {users?.lastName}</h1>
         </div>
-        <div className="grid text-center ">
+        <div className="grid grid-cols-3 text-center ">
           <NavLink
             to="stats"
             className={({ isActive }) => (isActive ? isstyle : style)}
             children={({ isActive }) => {
               return (
-                <div className={contain}>
-                  <div className="flex justify-center self-center">
+                <>
+                  <div className="flex justify-center">
                     <svg
                       className={isActive ? areq : Nsvg}
                       xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +35,7 @@ export default function Intro({users}) {
                   </div>
 
                   <div className={label}>STATISTICS</div>
-                  <div className="flex self-center justify-center"><BsArrowRight /></div>
-                </div>
+                </>
               );
             }}
           />
@@ -50,8 +46,8 @@ export default function Intro({users}) {
             className={({ isActive }) => (isActive ? isstyle : style)}
             children={({ isActive }) => {
               return (
-                <div className={contain}>
-                  <div className="flex justify-center align-middle self-center">
+                <>
+                  <div className="flex justify-center">
                     <svg
                       className={isActive ? Asvg : Nsvg}
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,8 +130,7 @@ export default function Intro({users}) {
                     </svg>
                   </div>
                   <div className={label}>REQUEST</div>
-                  <div className="flex self-center justify-center"><BsArrowRight /></div>
-                </div>
+                </>
               );
             }}
           />
@@ -145,8 +140,8 @@ export default function Intro({users}) {
             className={({ isActive }) => (isActive ? isstyle : style)}
             children={({ isActive }) => {
               return (
-                <div className={contain}>
-                  <div className="flex justify-center self-center">
+                <>
+                  <div className="flex justify-center">
                     <svg
                       className={isActive ? areq : Nsvg}
                       xmlns="http://www.w3.org/2000/svg"
@@ -168,8 +163,7 @@ export default function Intro({users}) {
                     </svg>
                   </div>
                   <div className={label}>ACTIVE DELIVERIES</div>
-                  <div className="flex self-center justify-center"><BsArrowRight /></div>
-                </div>
+                </>
               );
             }}
           />
