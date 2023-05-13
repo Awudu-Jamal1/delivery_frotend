@@ -34,6 +34,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./features/userAcc/users";
 import parceltransfer from "./services/parceltransfer";
 import Activate from "./pages/Agent/activate";
+import Progressin from "./pages/customer/Progressin";
 
 function App() {
   let logged = useSelector(selectUser);
@@ -101,9 +102,23 @@ const agentId =user?.Agents ? user?.Agents[0]?.id : ''
                 >
                   <Route index element={<Tracking />} />
                   <Route path="request" element={<Request user={user} />} />
+
                 </Route>
               )}{" "}
             </Route>
+            <Route
+                  element={
+                    <AuthProvider
+                      user={
+                        (!!user && user?.role === "Customer") ||
+                        user?.role === "Merchant"
+                      }
+                    />
+                  }
+                >
+                  <Route path="progessing" element={<Progressin />} />
+                </Route>
+
             <Route
               path="signin"
               element={<Login />}

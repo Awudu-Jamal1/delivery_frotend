@@ -20,7 +20,7 @@ console.log(id)
             <div className="step">
               {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
             </div>
-            <p className="text-[#000] ">{step}</p>
+            <p className="text-[#000] font-bold text-[0.7em] py-2">{step}</p>
           </div>
         ))}
       </div>

@@ -52,7 +52,7 @@ cm = emit.filter((e,i) =>e.customer_id ==3)
           </div>
 
         </div>
-        <div className=" my-3 pt-4"><Stepper  id={e.id} status ={e.status}/></div>
+        <div className=" my-3 pt-4 w-[29em]"><Stepper  id={e.id} status ={e.status}/></div>
       </div>))}
     </div>
 
