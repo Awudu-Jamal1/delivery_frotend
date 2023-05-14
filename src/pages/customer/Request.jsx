@@ -44,16 +44,16 @@ const priceCal=(w)=>{
 
 
   let details =
-    "bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-3 gap-2";
-  let h2 = "py-4 font-bold";
+    "bg-my-blue text-white rounded-xl text-[0.8em] py-2 px-4 grid grid-cols-1 gap-2";
+  let h2 = "py-2 font-bold text-[0.9em]";
   return (
     <>
     {model && <div className="fixed right-1 top-[15em]"><Sucess/></div>}
       <div className="flex justify-center ">
 
         <div className=" w-[40em] py-10 px-12 bg-[#f7fff7]">
-          <div className="text-center">
-            <h1>{next ? "ORDER SUMMARY" : "Start Request"}</h1>
+          <div className="text-center " >
+            <h1 className="font-bold text-[1em]" >{next ? " SUMMARY" : "Start Request"}</h1>
           </div>
           {next && (
             <div className="w-full">
@@ -78,7 +78,7 @@ const priceCal=(w)=>{
 
                 <div>
                   <h2 className={h2}>Receiver Details</h2>
-                  <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
+                  <div className="bg-my-blue text-white text-[0.8em] rounded-xl py-2 px-4 grid grid-cols-1 gap-2">
                     <div className="">
                       <p className="font-bold py-1">Receiver Name</p>
                       <p> {requests.order.reciever_name}</p>
@@ -92,7 +92,7 @@ const priceCal=(w)=>{
 
                 <div>
                   <h2 className={h2}>Delivery Address</h2>
-                  <div className="bg-my-blue text-white rounded-xl py-5 px-4 grid grid-cols-2 gap-2">
+                  <div className="bg-my-blue text-white text-[0.8em] rounded-xl py-2 px-4 grid grid-cols-1 gap-2">
                     <div className="">
                       <p className="font-bold py-1">MyLocation</p>
                       <p> {requests.order.From}</p>
@@ -104,11 +104,9 @@ const priceCal=(w)=>{
                   </div>
                 </div>
               </div>
-              <div className="pt-5 grid grid-cols-2">
-                <div className="text-center">
-                  Total price <p className="font-bold"> {requests.order.Total_price}</p>
-                </div>
-                <div>
+              <div className="pt-5 ">
+
+                <div className="flex justify-center">
                   <button onClick={async()=>{
 setModel(true)
                     try {
@@ -122,8 +120,8 @@ setModel(true)
                      }finally{ setModel(false)
                       navigate('/')
                       socket().emit('news',{ 'message': 'Ready'})}
-                  }} className="flex rounded-lg py-3 px-4 font-semibold bg-green-400 text-white  justify-center hover:bg-red-500">
-                    Request For Courier <span className="flex self-center pl-2"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span> <span className="flex self-center"><FaGreaterThan className="h-3"/></span>
+                  }} className="flex rounded-lg py-3 px-4 text-[0.9em] font-semibold bg-green-700 text-white  justify-center hover:bg-red-500">
+                    Request <span className="font-bold px-2"> ${requests.order.Total_price}</span>
                   </button>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import accounting from "../../assets/accounting.svg";
 import Intro from "./intro";
 import NoService from "./progress/Noservice";
-import ProgressBar from "./progress/ProgressBar";
+import ProgressBar from "./progress/ProgressBars";
 import Request from "./Request";
 import Tracking from "./tracking";
 
@@ -24,9 +24,9 @@ console.log(user.role)
         </div>
         <div className="flex justify-center my-12">
 
-          <div>
+          {/* <div>
           <ProgressBar id={users} type={user.role}/>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

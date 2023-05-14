@@ -100,7 +100,7 @@ const agentId =user?.Agents ? user?.Agents[0]?.id : ''
                     />
                   }
                 >
-                  <Route index element={<Tracking users={user} />} />
+                  <Route index element={<Tracking user={user} />} />
                   <Route path="request" element={<Request user={user} />} />
 
                 </Route>

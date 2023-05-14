@@ -2,11 +2,12 @@ import { useLocation } from "react-router-dom";
 
 import { HiArrowLeftCircle} from 'react-icons/hi2';
 import Stepper from "./progress/steppers";
-import ProgressBars from "./progress/ProgressBar";
+import ProgressBars from "./progress/ProgressBars";
 
 function Progressin() {
     const location = useLocation()
-    console.log(location.state)
+    const info =location.state
+    console.log(info.id)
     return ( <>
 
 
@@ -22,7 +23,7 @@ function Progressin() {
 <div  className="flex justify-center  " >
             <div className="w-[29em] bg-[#fff]">
             <div className="py-4 px-8 font-semibold">
-                1234561789
+                {info.id}
             </div>
             <div className="py-4 px-8">
                 <div><h2 className="text-[0.9em]">Rider Details</h2></div>
@@ -40,7 +41,7 @@ function Progressin() {
         </div>
 <div className="flex justify-center  ">
     <div className=" w-[29em] bg-[#fff] py-5">
-    <Stepper/>
+    <Stepper id={info.ids} status={info.status}/>
 
     </div>
  </div>
