@@ -6,7 +6,7 @@ const Stepper = ({id,status}) => {
   const steps = ["Pickup Ready", "Courier Assigned", "Deliverying", "Delivered"];
   const currentStep = parseInt(status);
   const [complete, setComplete] = useState(false);
-console.log(id)
+// console.log(id)
   return (
     <>
       <div className="flex justify-between py-3">
@@ -27,7 +27,7 @@ console.log(id)
       <div className="py-5 text-my-blue detail text-center">
 
       </div>
-       {currentStep === steps.length && (
+       {/* {currentStep === steps.length && (
         <button
         className="border h-[2.5em] border-my-blue w-[7em] text-my-blue font-bold hover:text-[#ffff] hover:bg-my-blue"
         onClick={async() => {
@@ -62,7 +62,7 @@ console.log(id)
            Cancel
 
         </button>
-      )}
+      )} */}
     </>
   );
 };

@@ -66,6 +66,7 @@ export default function Tracking({user}) {
       <div className="  text-[#000] bg-[#f7fff7] py-8 px-8 w-[36em] ">
         <div><h2 className="mb-3">My Parcel</h2></div>
         <ProgressBars id={users} type={user.role}/>
+
       </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import ProgressBars from "./progress/ProgressBars";
 function Progressin() {
     const location = useLocation()
     const info =location.state
-    console.log(info.id)
+    const riders =info.rider
     return ( <>
 
 
@@ -28,9 +28,10 @@ function Progressin() {
             <div className="py-4 px-8">
                 <div><h2 className="text-[0.9em]">Rider Details</h2></div>
                 <div className=" text-[0.8em] py-3">
-                <div >Name</div>
-                <div>Number</div>
-                <div>Bic Number</div>
+                <div className=" py-1">{ riders.firstName +" "+ riders.lastName}</div>
+                <div className=" py-1" >0{riders.phone}</div>
+                <div className=" py-1">{}</div>
+                <div>{riders.length ===0 &&<p>Searching for Agent</p>}</div>
                 </div>
 
             </div>

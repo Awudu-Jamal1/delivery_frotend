@@ -8,12 +8,13 @@ export default function ProgressBars({ id, type }) {
   const [res, setRes] = useState([]);
   const [emit, setEmit] = useState([]);
   const [catchs, setCatchs] = useState(false);
-
+  console.log(id,type)
   socket().on("update", (data) => {
     setEmit(data);
+    // console.log(data)
     setCatchs(true);
   });
-
+const role = type ==='Customer'?'customer_id':'merchant_id'
   let cm;
 
   useEffect(() => {
@@ -26,11 +27,11 @@ export default function ProgressBars({ id, type }) {
     };
     fetched();
   }, []);
-  cm = emit.filter((e, i) => e.customer_id == 3);
+  cm = emit.filter((e, i) => e[role] == id);
   return (
     <>
       <div>
-
+      {/* <div>{(emit.length ===0 || res.length===0) && <p>No Transaction</p>}</div> */}
         {catchs
           ? cm.map((e, i) => (
               <div
