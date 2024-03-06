@@ -1,39 +1,48 @@
-import React, { Suspense } from "react";
-import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUser } from "./features/userAcc/users";
+import { useState } from "react";
 
 import "./App.css";
+import Navbar from "./components/Navbar";
+import SignUp from "./pages/Account/SignUp";
+import Homepage from "./pages/Home/homepage";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Router,
+  RouterProvider,
+  Routes,
+
+  // BrowserRouter as Router,Routes,Route,
+} from "react-router-dom";
+import Layout from "./components/Layout";
+import ErrorPage from "./components/Errorpage";
+import Login from "./pages/Account/login";
+import Userpage from "./pages/customer/Userpage";
+import Tracking from "./pages/customer/tracking";
+import Request from "./pages/customer/Request";
+import Agent from "./pages/Agent/Agentpage";
+import Requests from "./pages/Agent/Requests";
+import Stats from "./pages/Agent/Stats";
+import User from "./pages/Account/User";
+import AgentAcc from "./pages/Account/Agentacc";
+import MerchantAcc from "./pages/Account/Merchantacc";
+import LoggedUser from "./components/loggedUser";
+import AuthProvider from "./util/auth";
+import ProtectedRoute from "./util/protect";
+import Landing from "./components/Landing";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userAcc/users";
+import parceltransfer from "./services/parceltransfer";
+import Activate from "./pages/Agent/activate";
+import Progressin from "./pages/customer/Progressin";
 
 function App() {
-  const logged = useSelector(selectUser);
+  let logged = useSelector(selectUser);
   const user = logged;
-  const status = user?.role === "Agent" ? true : false;
-  const agentId = user?.Agents ? user?.Agents[0]?.id : '';
 
-  // Dynamic imports for components
-  const Navbar = React.lazy(() => import("./components/Navbar"));
-  const SignUp = React.lazy(() => import("./pages/Account/SignUp"));
-  const Homepage = React.lazy(() => import("./pages/Home/homepage"));
-  const Layout = React.lazy(() => import("./components/Layout"));
-  const ErrorPage = React.lazy(() => import("./components/Errorpage"));
-  const Login = React.lazy(() => import("./pages/Account/login"));
-  const Userpage = React.lazy(() => import("./pages/customer/Userpage"));
-  const Tracking = React.lazy(() => import("./pages/customer/tracking"));
-  const Request = React.lazy(() => import("./pages/customer/Request"));
-  const Agent = React.lazy(() => import("./pages/Agent/Agentpage"));
-  const Requests = React.lazy(() => import("./pages/Agent/Requests"));
-  const Stats = React.lazy(() => import("./pages/Agent/Stats"));
-  const User = React.lazy(() => import("./pages/Account/User"));
-  const AgentAcc = React.lazy(() => import("./pages/Account/Agentacc"));
-  const MerchantAcc = React.lazy(() => import("./pages/Account/Merchantacc"));
-  const LoggedUser = React.lazy(() => import("./components/loggedUser"));
-  const AuthProvider = React.lazy(() => import("./util/auth"));
-  const ProtectedRoute = React.lazy(() => import("./util/protect"));
-  const Landing = React.lazy(() => import("./components/Landing"));
-  const parceltransfer = React.lazy(() => import("./services/parceltransfer"));
-  const Activate = React.lazy(() => import("./pages/Agent/activate"));
-  const Progressin = React.lazy(() => import("./pages/customer/Progressin"));
+  const status = user?.role === "Agent" ? true : false;
+  // const statusid = user?.Customers[0]?.id;
+const agentId =user?.Agents ? user?.Agents[0]?.id : ''
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -43,6 +52,13 @@ function App() {
             <Route
               element={
                 <Landing
+                  // loader={async () => {
+                  //   const response = await parceltransfer.getTransaction({
+                  //     Id: statusid,
+                  //     type: user?.role,
+                  //   });
+                  //   return response;
+                  // }}
                   users={user}
                 />
               }
@@ -51,149 +67,71 @@ function App() {
               {status ? (
                 <Route
                   element={
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <AuthProvider user={!!user && user?.role === "Agent"} />
-                    </Suspense>
+                    <AuthProvider user={!!user && user?.role === "Agent"} />
                   }
                 >
                   <Route
                     index
-                    element={
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <Requests user={user} />
-                      </Suspense>
-                    }
+                    element={<Requests user={user}  />}
                     loader={async () => {
                       return (await parceltransfer.getall()).data;
                     }}
                   />
                   <Route
                     path="request"
-                    element={
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <Activate />
-                      </Suspense>
-                    }
+                    element={<Activate  />}
                     loader={async () => {
-                      return (await parceltransfer.active({ id: agentId })).data;
+                      return (await parceltransfer.active({id:agentId})).data;
                     }}
                   />
-                  <Route
-                    path="stats"
-                    element={
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <Stats />
-                      </Suspense>
-                    }
+                  <Route path="stats" element={<Stats />}
                     loader={async () => {
-                      return (await parceltransfer.historyA({ id: agentId })).data;
-                    }}
-                  />
+                      return (await parceltransfer.historyA({id:agentId})).data;
+                    }} />
                 </Route>
               ) : (
                 <Route
                   element={
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <AuthProvider
-                        user={
-                          (!!user && user?.role === "Customer") ||
-                          user?.role === "Merchant"
-                        }
-                      />
-                    </Suspense>
+                    <AuthProvider
+                      user={
+                        (!!user && user?.role === "Customer") ||
+                        user?.role === "Merchant"
+                      }
+                    />
                   }
                 >
-                  <Route
-                    index
-                    element={
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <Tracking user={user} />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="request"
-                    element={
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <Request user={user} />
-                      </Suspense>
-                    }
-                  />
+                  <Route index element={<Tracking user={user} />} />
+                  <Route path="request" element={<Request user={user} />} />
+
                 </Route>
-              )}
+              )}{" "}
             </Route>
             <Route
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <AuthProvider
-                    user={
-                      (!!user && user?.role === "Customer") ||
-                      user?.role === "Merchant"
-                    }
-                  />
-                </Suspense>
-              }
-            >
-              <Route
-                path="progessing"
-                element={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <Progressin />
-                  </Suspense>
-                }
-              />
-            </Route>
+                  element={
+                    <AuthProvider
+                      user={
+                        (!!user && user?.role === "Customer") ||
+                        user?.role === "Merchant"
+                      }
+                    />
+                  }
+                >
+                  <Route path="progessing" element={<Progressin />} />
+                </Route>
 
             <Route
               path="signin"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Login />
-                </Suspense>
-              }
-              errorElement={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ErrorPage />
-                </Suspense>
-              }
+              element={<Login />}
+              errorElement={<ErrorPage />}
             />
 
-            <Route
-              path="signup"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <SignUp />
-                </Suspense>
-              }
-            >
-              <Route
-                path="user"
-                element={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <User />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="merchant"
-                element={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <MerchantAcc />
-                  </Suspense>
-                }
-              />
+            <Route path="signup" element={<SignUp />}>
+              <Route path="user" element={<User />} />
+              <Route path="merchant" element={<MerchantAcc />} />
               <Route
                 path="agent"
-                errorElement={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <ErrorPage />
-                  </Suspense>
-                }
-                element={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <AgentAcc />
-                  </Suspense>
-                }
+                errorElement={<ErrorPage />}
+                element={<AgentAcc />}
               />
             </Route>
           </Route>
