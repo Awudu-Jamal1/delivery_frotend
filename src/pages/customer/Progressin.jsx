@@ -8,7 +8,7 @@ function Progressin() {
     const location = useLocation()
      const info =location.state
     // const riders =info.rider
-     console.log(info)
+     console.log(location)
     return ( <>
   
 
@@ -25,7 +25,7 @@ function Progressin() {
 <div  className="flex justify-center  " >
             <div className="w-[29em] bg-[#fff]">
             <div className="py-4 px-8 font-semibold">
-                {/* {info.id} */}
+                {info.id}
             </div>
             <div className="py-4 px-8">
                 {/* <div><h2 className="text-[0.9em]">Rider Details</h2></div>
@@ -44,7 +44,7 @@ function Progressin() {
         </div>
 <div className="flex justify-center  ">
     <div className=" w-[29em] bg-[#fff] py-5">
-    {/* <Stepper id={info.ids} status={info.status}/> */}
+    <Stepper id={info.ids} status={info.status}/>
 
     </div>
  </div>
