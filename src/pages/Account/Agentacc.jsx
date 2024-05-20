@@ -52,7 +52,7 @@ export default function AgentAcc() {
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="max-sm:text-[0.9em]" method="post">
-        <div className="grid grid-cols-2 gap-10 py-2">
+        <div className="grid lg:grid-cols-2 sm:grid-col-1 gap-10 py-2">
           <div>
             <label htmlFor="firsts" className={labels}>First Name</label>
             <input
@@ -95,7 +95,7 @@ export default function AgentAcc() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-10 py-2">
+        <div className="grid lg:grid-cols-3 sm:grid-col-1 gap-10 py-2">
           <div>
             <label htmlFor="phone" className={labels}>Phone Number</label>
             <input
@@ -112,7 +112,7 @@ export default function AgentAcc() {
               {...register("address", { required: "Enter Address" })}
               type="text"
               className={errors.address ? estyle : style}
-              placeholder="Enter Business Address"
+              placeholder="Enter  Address"
             />
             {errors.address && <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1">{errors.address.message}</p>}
           </div>
@@ -128,7 +128,7 @@ export default function AgentAcc() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 py-2">
+        <div className="grid lg:grid-cols-2 sm:grid-col-1 gap-10 py-2">
           <div>
             <label htmlFor="password" className={labels}>Password</label>
             <input

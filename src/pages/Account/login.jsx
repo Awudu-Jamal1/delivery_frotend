@@ -30,7 +30,7 @@ export default function Login() {
       <div className="flex min-h-full items-center justify-center py-10 ">
         <div className="signup  w-max py-5">
           <div className="text-left">
-            <h1 className="font-bold px-20">Login to your Quickly Account </h1>
+            <h1 className="font-bold text-center text-[2em] px-20">Login to your Quickly Account </h1>
           </div>
           <div className="text-rose-600 font-bold text-[0.8em] px-2 py-1">
             {wrong}

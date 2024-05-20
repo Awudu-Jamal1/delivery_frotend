@@ -25,7 +25,7 @@ export default function User() {
     <>
       <div className="border w-[45em] signup py-2  px-8">
         <div className="text-center">
-          <h1 className="text-3xl py-3 font-bold">Create A Customer Account</h1>
+          <h1 className="text-[2em] py-3 font-bold">Create A Customer Account</h1>
           <p className="px-16 py-5">
             Lorem ipsum dolor sit amet consrecusandae soluta voluptatem illo!
             Consequuntur, expedita?
@@ -33,7 +33,7 @@ export default function User() {
         </div>
         <div>
           <form action="" method="post">
-            <div className="grid grid-cols-2 gap-10 py-2">
+            <div className="grid lg:grid-cols-2 sm:grid-col-12 gap-10 py-2">
               <div className=" ">
                 <label htmlFor="" className={labels}>
                   First Name
@@ -94,7 +94,7 @@ export default function User() {
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-10 py-2">
+            <div className="grid lg:grid-cols-2 sm:grid-col-1 gap-10 py-2">
               <div className=" ">
                 <label htmlFor="" className={labels}>
                   Phone Number
