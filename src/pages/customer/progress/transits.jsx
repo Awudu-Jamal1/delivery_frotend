@@ -8,8 +8,8 @@ import parceltransfer from "../../../services/parceltransfer";
 import { ImCancelCircle } from "react-icons/im";
 
 function Transits({ info }) {
-  const rider = info?.Agent 
-  console.log(rider)
+  const rider = info?.Agent;
+
   const agent = info?.Agent;
   const navigate = useNavigate();
   const steps = [
