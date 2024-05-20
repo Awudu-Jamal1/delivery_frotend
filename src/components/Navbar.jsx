@@ -49,13 +49,13 @@ export default function Navbar() {
           </div>
           <div className="hidden   lg:flex lg:flex-1 lg:justify-end">
             <div className='flex  justify-around  items-center w-2/4'>
-            <div className='text-sm font-semibold leading-6'>
+            {/* <div className='text-sm font-semibold leading-6'>
             {logof &&<div className='pl-1'>
             <SlWallet className=''/>
             </div>}
 
             <div className=''>0.00</div>
-            </div>
+            </div> */}
 
             {!logof && <Link to='signin' className="text-sm font-semibold leading-6">
 
@@ -71,7 +71,7 @@ dispatch(logout(null))
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <div className="fixed inset-0 z-50" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#edf6f9] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-50 overflow-y-auto bg-[#edf6f9] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <h1>Logo</h1>
@@ -105,7 +105,7 @@ dispatch(logout(null))
                     <span>0.00</span>
                   </div>} */}
                   {!logof &&<Link
-                    to='signup'
+                    to='signin'
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white"
                   >
                     Log in
