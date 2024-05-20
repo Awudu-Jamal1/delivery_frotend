@@ -14,8 +14,10 @@ export default function ProgressBars({ id, type }) {
     // console.log(data)
     setCatchs(true);
   });
-const role = type ==='Customer'?'customer_id':'merchant_id'
+const role = 'Customer'
   let cm;
+  console.log("emit", emit)
+  console.log("catchs",catchs)
 
   useEffect(() => {
     let fetched = async () => {
