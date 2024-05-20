@@ -25,7 +25,7 @@ function Progressin() {
 <div  className="flex justify-center  " >
             <div className="w-[29em] bg-[#fff]">
             <div className="py-4 px-8 font-semibold">
-                {info.id}
+                {/* {info.id} */}
             </div>
             <div className="py-4 px-8">
                 {/* <div><h2 className="text-[0.9em]">Rider Details</h2></div>
