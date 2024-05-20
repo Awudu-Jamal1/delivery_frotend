@@ -28,12 +28,12 @@ function Progressin() {
                 {info.id}
             </div>
             <div className="py-4 px-8">
-                {riders ==null? (<div> Waiting For Rider</div>):(<div> <div><h2 className="text-[0.9em]">Rider Details</h2></div>
+                {riders ==null? (<div>{riders.User.length ===0 &&<p>Searching for Agent</p>}</div>):(<div> <div><h2 className="text-[0.9em]">Rider Details</h2></div>
                 <div className=" text-[0.8em] py-3">
                 <div className=" py-1">{ riders.User.firstName +" "+ riders.User.lastName}</div>
                 <div className=" py-1" >0{riders.User.phone}</div>
                 <div className=" py-1">{}</div>
-                <div>{riders.User.length ===0 &&<p>Searching for Agent</p>}</div>
+                
                 </div> </div>) }
 
             </div>
