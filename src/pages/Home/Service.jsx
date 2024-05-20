@@ -20,7 +20,7 @@ const Service=()=>{
                     </NavLink>
 
                 </div>
-                <div className={grid}>
+                {/* <div className={grid}>
 
                     <div className="flex justify-center items-center h-20  py-3">
                   <AiOutlineShop className='text-[4em]'/> </div>
@@ -31,7 +31,7 @@ const Service=()=>{
                          <NavLink to="/signup/merchant">   <button className="my-5  bg-red-500">Join As Merchant</button>
                     </NavLink>
 
-                </div>
+                </div> */}
 
                 <div className={grid}>
 

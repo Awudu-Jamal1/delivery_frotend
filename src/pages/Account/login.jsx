@@ -1,20 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch,useSelector, useStore } from "react-redux";
-import { login,selectUser,setTokens } from "../../features/userAcc/users";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { login, selectUser, setTokens } from "../../features/userAcc/users";
 import UserAuthenticate from "../../services/UserAuthenticate";
-import { SpinnerCircular } from 'spinners-react';
+import { SpinnerCircular } from "spinners-react";
 import { useState } from "react";
 
-
-
-
-
 export default function Login() {
-    let dispatch =useDispatch()
-    let using = useSelector(selectUser)
-    let navigate = useNavigate()
-    const [shows,setShow]= useState(false)
+  let dispatch = useDispatch();
+  let using = useSelector(selectUser);
+  let navigate = useNavigate();
+  const [shows, setShow] = useState(false);
+  const [wrong, setWrong] = useState("");
   const {
     register,
     handleSubmit,
@@ -34,7 +31,9 @@ export default function Login() {
         <div className="signup  w-max py-5">
           <div className="text-left">
             <h1 className="font-bold px-20">Login to your Quickly Account </h1>
-
+          </div>
+          <div className="text-rose-600 font-bold text-[0.8em] px-2 py-1">
+            {wrong}
           </div>
           <div>
             <form action="" method="post" className="py-5 px-16">
@@ -99,7 +98,6 @@ export default function Login() {
                 </label>
                 <select {...register("Status")} id="status">
                   <option value="Customer">Customer</option>
-                  <option value="Merchant">Merchant</option>
                   <option value="Agent">Agent</option>
                 </select>
               </div>
@@ -111,37 +109,46 @@ export default function Login() {
               </div>
 
               <div className=" flex py-5 justify-center">
-               { !shows?<button
-                  className="w-40  text-center h-10 bg-red-500 text-white"
-                  onClick={handleSubmit(async (data) => {
-                    console.log(data)
+                {!shows ? (
+                  <button
+                    className="w-40  text-center h-10 bg-red-500 text-white"
+                    onClick={handleSubmit(async (data) => {
+                      console.log(data);
 
-                    let datas = {
-                      role: data.Status,
-                      email: data.email,
-                      password: data.password,
-                    };
-setShow(true)
-                    try {
-                      let response = (await UserAuthenticate.logins(datas)).data
+                      let datas = {
+                        role: data.Status,
+                        email: data.email,
+                        password: data.password,
+                      };
+                      setShow(true);
+                      try {
+                        let response = (await UserAuthenticate.logins(datas))
+                          .data;
 
+                        dispatch(login(response.user));
+                        dispatch(setTokens(response.token));
 
-                      dispatch(login(response.user))
-                      dispatch(setTokens(response.token))
-
-                      navigate('/')
-                    //   login.
-                    } catch (error) {
-                      console.log("User Login error");
-
-                    }finally{setShow(false)}
-                  })}
-                >
-                  Sign In
-                </button>
-               : <button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
-                <SpinnerCircular color="#ffff" size='1.5em' thickness='400'/>
-                </button>}
+                        navigate("/");
+                        //   login.
+                      } catch (error) {
+                        console.log("User Login error");
+                        setWrong(error);
+                      } finally {
+                        setShow(false);
+                      }
+                    })}
+                  >
+                    Sign In
+                  </button>
+                ) : (
+                  <button className="w-40  text-center flex justify-center h-10  bg-red-500 text-white">
+                    <SpinnerCircular
+                      color="#ffff"
+                      size="1.5em"
+                      thickness="400"
+                    />
+                  </button>
+                )}
               </div>
             </form>
             <div className="text-center">

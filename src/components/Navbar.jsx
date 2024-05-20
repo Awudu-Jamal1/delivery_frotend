@@ -10,8 +10,8 @@ import { login, logout, setTokens ,loggin} from '../features/userAcc/users';
 
 const navigation = [
   { name: 'About', href: 'about' },
-  { name: 'Pricing', href: 'pricing' },
-  { name: 'Tracking', href: '#' },
+  // { name: 'Pricing', href: 'pricing' },
+  // { name: 'Tracking', href: '#' },
   { name: 'Contact', href: '#' },
 ]
 
@@ -100,10 +100,10 @@ dispatch(logout(null))
                   ))}
                 </div>
                 <div className="py-6">
-                  {logof &&<div className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white'>
+                  {/* {logof &&<div className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white'>
                     <SlWallet/>
                     <span>0.00</span>
-                  </div>}
+                  </div>} */}
                   {!logof &&<Link
                     to='signup'
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-my-blue hover:text-white"
