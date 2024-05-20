@@ -133,7 +133,7 @@ export default function User() {
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-10 py-2">
+            <div className="grid lg:grid-cols-2 sm:grid-col-1 gap-10 py-2">
               <div className=" ">
                 <label htmlFor="" className={labels}>
                   Password
