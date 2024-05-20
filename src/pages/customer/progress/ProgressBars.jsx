@@ -17,7 +17,7 @@ export default function ProgressBars({ id, type }) {
 const role = 'Customer'
   let cm;
   console.log("emit", emit)
-  console.log("catchs",res)
+  console.log("res",res)
 
   useEffect(() => {
     let fetched = async () => {
