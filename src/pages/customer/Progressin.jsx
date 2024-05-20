@@ -6,9 +6,9 @@ import ProgressBars from "./progress/ProgressBars";
 
 function Progressin() {
     const location = useLocation()
-    // const info =location.state
+     const info =location.state
     // const riders =info.rider
-    // console.log(info,riders)
+     console.log(info)
     return ( <>
   
 
