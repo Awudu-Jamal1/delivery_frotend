@@ -61,6 +61,7 @@ export default function AgentAcc() {
               className={errors.firsts ? estyle : style}
               placeholder="Enter your First Name"
             />
+            
             {errors.firsts && <p className="text-rose-600 font-bold text-[0.8em] px-2 py-1">{errors.firsts.message}</p>}
           </div>
           <div>

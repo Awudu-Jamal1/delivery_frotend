@@ -8,7 +8,9 @@ function Progressin() {
     const location = useLocation()
     const info =location.state
     const riders =info.rider
+    console.log(info,riders)
     return ( <>
+  
 
 
        <div className="mt-[5em] text-[#000]">
